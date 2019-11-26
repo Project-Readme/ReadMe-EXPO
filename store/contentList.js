@@ -34,9 +34,9 @@ export const loadContentList = () => async dispatch => {
             type: LOAD_CONTENT_LIST,
             contentList
         });
-            
+
     } catch (error) {
-        console.error(error);        
+        console.error(error);
     }
 
 }

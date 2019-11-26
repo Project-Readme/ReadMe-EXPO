@@ -9,4 +9,5 @@ const logger = createLogger();
 
 const reducers = combineReducers({currentContent: currentContentReducer, contentList: contentListReducer});
 
+
 export default createStore(reducers, applyMiddleware(thunkMiddleware));

@@ -14,9 +14,9 @@ import Articles from '../screens/Articles'
 import User from '../screens/User'
 
 const TabNavigator = createBottomTabNavigator({
-  Home: { screen: Home },
-  Articles: { screen: Articles },
-  User: { screen: User }
+    Home: { screen: Home },
+    Articles: { screen: Articles },
+    User: { screen: User }
 });
 
 const BottomTabNavigator = createAppContainer(TabNavigator);
