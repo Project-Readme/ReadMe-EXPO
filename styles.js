@@ -8,9 +8,11 @@ module.exports = StyleSheet.create({
     justifyContent: "flex-start",
   },
   topBar: {
-    flex: 1,
-    // backgroundColor: '#a82323',
+    padding: 5,
+    paddingTop: 15,
+    backgroundColor: '#a82323',
     flexDirection: 'row',
+    flexWrap: 'wrap',
     justifyContent: 'flex-start',
     alignItems: 'center',
   },
@@ -32,7 +34,7 @@ module.exports = StyleSheet.create({
     fontSize: 12,
   },
   homeContainer: {
-    margin: 100,
-    // backgroundColor: 'black'
+    flex: 1,
+    backgroundColor: 'white'
   }
 });

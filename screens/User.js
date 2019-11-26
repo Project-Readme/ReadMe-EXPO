@@ -5,6 +5,7 @@ import TopBar from '../components/topBar';
 const User = props => {
     return (
         <View>
+            <TopBar />
             <Text>User</Text>
         </View>
     )
