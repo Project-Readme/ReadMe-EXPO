@@ -6,9 +6,9 @@ export default function () {
     return (
         <View style={styles.topBar}>
             <Image
-                style={{ width: 50, height: 50 }}
+                style={{ marginTop: 10, marginRight: 10, width: 50, height: 50 }}
                 source={require('../assets/icon.png')} />
-            <Text style={{ color: 'white', fontSize: 20 }}>
+            <Text style={{ marginTop: 10, color: 'white', fontSize: 20 }}>
                 ReadMe: Reading Made Easy
             </Text>
         </View>

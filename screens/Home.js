@@ -8,7 +8,7 @@ const Home = props => {
     return (
         <View style={styles.homeContainer}>
             <TopBar />
-            {/* <Text>hi</Text> */}
+            <Text>Home</Text>
         </View>
     )
 }
