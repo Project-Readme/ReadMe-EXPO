@@ -1,20 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import db from './database';
+import { TopBar, ReadContent } from './components';
+import styles from './styles';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open</Text>
+      <TopBar />
+      <ReadContent />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
