@@ -5,18 +5,18 @@ module.exports = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "stretch",
-    justifyContent: "flex-start"
+    justifyContent: "flex-start",
   },
   topBar: {
     flex: 1,
-    backgroundColor: '#a82323',
+    // backgroundColor: '#a82323',
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    alignItems: 'center'
-},
-readingContainer: {
+    alignItems: 'center',
+  },
+  readingContainer: {
     flex: 11,
-},
+  },
   titleView: {
     alignItems: "center",
     flexGrow: 1,
@@ -30,5 +30,9 @@ readingContainer: {
   },
   textText: {
     fontSize: 12,
+  },
+  homeContainer: {
+    margin: 100,
+    // backgroundColor: 'black'
   }
 });

@@ -4,14 +4,14 @@ import styles from '../styles';
 
 export default function () {
     return (
-        <View style={styles.topBar}>
+        <View >
             <Image style={{ width: 50, height: 50 }}
                 source={require('../assets/icon.png')}>
 
             </Image>
-            <Text style={{ color: 'white', fontSize: 20 }}>
+            <Text style={{ color: 'black', fontSize: 30 }}>
                 ReadMe: Reading Made Easy
-        </Text>
+            </Text>
         </View>
     )
 }
