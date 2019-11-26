@@ -1,3 +1,6 @@
+
+import db from '../database';
+
 /*
     Action Types
 */
@@ -8,11 +11,22 @@ const LOAD_CONTENT_LIST = 'LOAD_CONTNENT_LIST';
     Action Creators
 */
 
-export const loadContentList = () => dispatch => {
-    return {
-        type: LOAD_CONTENT_LIST,
-        contentList: []
+export const loadContentList = () => async dispatch => {
+
+    try {
+
+        const contentList = await db.collection('content').get();
+        console.log("content list", contentList)
+
+        dispatch({
+            type: LOAD_CONTENT_LIST,
+            contentList
+        });
+            
+    } catch (error) {
+        console.error(error);        
     }
+
 }
 
 
