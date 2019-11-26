@@ -16,15 +16,15 @@ export const loadContentList = () => async dispatch => {
     try {
 
         const contentList = await db.collection('content').get();
-        console.log("content list", contentList)
+        // console.log("content list", contentList)
 
         dispatch({
             type: LOAD_CONTENT_LIST,
             contentList
         });
-            
+
     } catch (error) {
-        console.error(error);        
+        console.error(error);
     }
 
 }
