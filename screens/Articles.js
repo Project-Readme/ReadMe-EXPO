@@ -5,6 +5,7 @@ import TopBar from '../components/topBar';
 const Articles = props => {
     return (
         <View>
+            <TopBar />
             <Text>Articles</Text>
         </View>
     )
