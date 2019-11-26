@@ -18,7 +18,10 @@
     "react-native-screens": "~1.0.0-alpha.23",
     "react-native-web": "^0.11.7",
     "react-navigation": "^4.0.10",
-    "react-navigation-tabs": "^2.6.0"
+    "react-navigation-tabs": "^2.6.0",
+    "redux": "^4.0.4",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "babel-preset-expo": "^7.1.0"
