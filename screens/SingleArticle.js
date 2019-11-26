@@ -1,16 +1,15 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import TopBar from '../components/topBar';
-import styles from '../styles'
+import ReadContent from '../components/readContent';
 
-
-const Home = props => {
+const SingleArticle = props => {
     return (
-        <View style={styles.homeContainer}>
+        <View>
             <TopBar />
-            <Text>Home</Text>
+            <ReadContent />
         </View>
     )
 }
 
-export default Home;
+export default SingleArticle;
