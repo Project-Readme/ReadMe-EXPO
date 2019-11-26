@@ -1,6 +1,8 @@
 import React from 'react';
 import { Text, View, ScrollView } from 'react-native';
-import styles from '../../styles';
+import styles from '../styles';
+
+import db from '../database';
 
 export default class ReadContent extends React.Component {
   constructor() {
@@ -23,12 +25,40 @@ Rawlinson, who led the engineering development of the Tesla Model S during a thr
     };
   }
 
-  // componentDidMount() {
-  //     this.loadData();
-  // }
+  componentDidMount() {
+      this.loadData();
+  }
 
-  // loadData() {
-  // }
+  async loadData() {
+
+//     let test = db.collection('content').doc('newArticle');
+// let newArticle = test
+//   .get()
+//   .then(doc => {
+//     if (!doc.exists) {
+//       console.log('No such document!');
+//     } else {
+//       // console.log('Document data:', doc.data());
+//       console.log('working')
+//     }
+//   })
+//   .catch(err => {
+//     console.log('Error getting document', err);
+//   });
+// // console.log(newArticle);
+
+    let articles = await db.collection('content').get();
+
+      console.log("we have", articles.docs.length, "articles in the database")
+      //articles.docs.forEach(doc => console.log(doc));
+
+    try {
+      
+    } catch (error) {
+      console.error(error);
+    }
+
+  }
 
   render() {
     return (
