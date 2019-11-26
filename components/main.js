@@ -13,11 +13,29 @@ import Home from '../screens/Home'
 import Articles from '../screens/Articles'
 import User from '../screens/User'
 
-const TabNavigator = createBottomTabNavigator({
-    Home: { screen: Home },
-    Articles: { screen: Articles },
-    User: { screen: User }
-});
+
+import 'react-native-gesture-handler';
+import { createStackNavigator } from 'react-navigation-stack';
+import SingleArticle from '../screens/SingleArticle';
+
+const ArticlesStack = createStackNavigator({
+    Articles: Articles,
+    Article: SingleArticle
+  });
+
+  const HomeStack = createStackNavigator({
+    Home: Home,
+  });
+
+  const UserStack = createStackNavigator({
+    User: User,
+  });
+
+  const TabNavigator = createBottomTabNavigator({
+    Home,
+    ArticlesStack,
+    User
+  });
 
 const BottomTabNavigator = createAppContainer(TabNavigator);
 
