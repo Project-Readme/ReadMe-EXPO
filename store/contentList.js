@@ -15,8 +15,20 @@ export const loadContentList = () => async dispatch => {
 
     try {
 
-        const contentList = await db.collection('content').get();
-        // console.log("content list", contentList)
+        const contentList = [];
+        const res = await db.collection('content').get();
+
+        res.docs.forEach(doc => {
+            const data = doc.data();
+            if (data.Title) {
+                contentList.push({
+                    id: doc.id,
+                    title: data.Title,
+                    html: data.Article,
+                    url: data.URL
+                })
+            }
+        })
 
         dispatch({
             type: LOAD_CONTENT_LIST,
