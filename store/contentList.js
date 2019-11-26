@@ -1,3 +1,6 @@
+
+import db from '../database';
+
 /*
     Action Types
 */
@@ -8,11 +11,34 @@ const LOAD_CONTENT_LIST = 'LOAD_CONTNENT_LIST';
     Action Creators
 */
 
-export const loadContentList = () => dispatch => {
-    return {
-        type: LOAD_CONTENT_LIST,
-        contentList: []
+export const loadContentList = () => async dispatch => {
+
+    try {
+
+        const contentList = [];
+        const res = await db.collection('content').get();
+
+        res.docs.forEach(doc => {
+            const data = doc.data();
+            if (data.Title) {
+                contentList.push({
+                    id: doc.id,
+                    title: data.Title,
+                    html: data.Article,
+                    url: data.URL
+                })
+            }
+        })
+
+        dispatch({
+            type: LOAD_CONTENT_LIST,
+            contentList
+        });
+
+    } catch (error) {
+        console.error(error);
     }
+
 }
 
 

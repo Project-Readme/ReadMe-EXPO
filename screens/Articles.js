@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View, ScrollView, Image, TouchableOpacity, Button } from 'react-native';
 
 import TopBar from '../components/topBar';
+import ReadContent from '../components/readContent';
 
 export default class AllArticles extends React.Component {
     static navigationOptions = {
@@ -46,4 +47,5 @@ export default class AllArticles extends React.Component {
         );
       }
     }
+
 
