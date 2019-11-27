@@ -27,8 +27,8 @@ const dummy = [
 ]
 const Home = props => {
     return (
-        <ScrollView style={styles.homeContainer}>
-            <TopBar />
+        <View style={styles.homeContainer}>
+        <TopBar />
             <Text style={{ color: '#747882', padding: 10, paddingBottom: 0, fontSize: 24, fontWeight: 'bold' }}>Most Popular</Text>
             <ScrollView
                 horizontal={true}
@@ -51,8 +51,13 @@ const Home = props => {
                     )
                 }}
              />
-        </ScrollView>
+
+        </View>
     )
+}
+
+Home.navigationOptions = {
+    header: null
 }
 
 export default Home;

@@ -1,11 +1,11 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
 module.exports = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "stretch",
-    justifyContent: "flex-start",
+    backgroundColor: '#fff',
+    alignItems: 'stretch',
+    justifyContent: 'flex-start',
   },
   topBar: {
     padding: 5,
@@ -20,14 +20,14 @@ module.exports = StyleSheet.create({
     flex: 11,
   },
   titleView: {
-    alignItems: "center",
+    alignItems: 'center',
     flexGrow: 1,
   },
   titleText: {
     fontSize: 30,
   },
   textView: {
-    alignItems: "flex-start",
+    alignItems: 'flex-start',
     flexGrow: 12,
   },
   textText: {
@@ -36,5 +36,10 @@ module.exports = StyleSheet.create({
   homeContainer: {
     flex: 1,
     backgroundColor: 'white'
+  },
+  AllArticles: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   }
 });
