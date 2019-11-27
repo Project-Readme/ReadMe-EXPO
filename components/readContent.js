@@ -7,15 +7,20 @@ import { connect } from 'react-redux';
 
 class ReadContent extends React.Component {
   render() {
-    return (<WebView source={{ html: this.props.currentContent.html }} 
+    return (<WebView
+source={{ html: `<html> 
+                    <head> 
+                    <style> ${this.props.currentContent.css} </style>
+                    </head>
+                    ${this.props.currentContent.html}
+                  </html>`}}
     style={{
-     
       flex: 1,
     }} />);
   }
 }
 
-  mapState = state => ({
+  const mapState = state => ({
     currentContent: state.currentContent
   })
 
