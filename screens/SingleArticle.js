@@ -5,10 +5,7 @@ import ReadContent from '../components/readContent';
 
 const SingleArticle = props => {
     return (
-        <View>
-            <TopBar />
-            <ReadContent />
-        </View>
+        <ReadContent />
     )
 }
 
