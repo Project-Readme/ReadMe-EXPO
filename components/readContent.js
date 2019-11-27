@@ -7,16 +7,16 @@ import { connect } from 'react-redux';
 
 class ReadContent extends React.Component {
   render() {
-    return <WebView source={{ html: this.props.currentContent.html }} 
+    return (<WebView source={{ html: this.props.currentContent.html }} 
     style={{
      
       flex: 1,
-    }} />;
+    }} />);
   }
 }
 
   mapState = state => ({
-    currentContent: state.contentList[1]
+    currentContent: state.currentContent
   })
 
   export default connect(mapState)(ReadContent);
