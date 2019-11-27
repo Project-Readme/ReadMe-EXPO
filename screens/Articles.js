@@ -1,8 +1,7 @@
 import React from 'react';
 import { Text, View, ScrollView, Image, TouchableOpacity, Button } from 'react-native';
-
 import TopBar from '../components/topBar';
-import ReadContent from '../components/readContent';
+import Card from '../components/Card';
 
 export default class AllArticles extends React.Component {
     static navigationOptions = {
@@ -28,24 +27,22 @@ export default class AllArticles extends React.Component {
     render() {
         const { navigate } = this.props.navigation;
         return (
-          <View>
+          <ScrollView>
               <TopBar />
              { this.state.articles.map((article, index) => (
-                        <TouchableOpacity key={index} >
-                            <Image
-                                source={{uri: article.mainPic}}
-                                style={{width: 100, height: 100}}
-                            />
-                            <Button
+                        <TouchableOpacity
+                        key={index}
+                        onPress={() => navigate('Article')}
+                        >
+                            <Card
                                 title={article.title}
-                                onPress={() => navigate('Article')}
+                                image={{uri: article.mainPic}}
                             />
                         </TouchableOpacity>
              ))
               }
-          </View>
+          </ScrollView>
         );
       }
     }
-
 
