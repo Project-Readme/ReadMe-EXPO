@@ -1,8 +1,11 @@
 import React from "react";
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from "react-native";
-import * as firebase from "firebase";
+import { connect } from 'react-redux';
 
-export default class Login extends React.Component {
+import { signIn } from '../store/user';
+import styles from '../styles';
+
+class Login extends React.Component {
     constructor() {
         super()
         this.state = {
@@ -12,15 +15,7 @@ export default class Login extends React.Component {
         };
     }
 
-    handleLogin = () => {
-        const { email, password } = this.state;
-
-        firebase
-            .auth()
-            .signInWithEmailAndPassword(email, password)
-            .catch(error => this.setState({ errorMessage: error.message }));
-    };
-
+  
     render() {
         return (
             <View style={styles.container}>
@@ -53,7 +48,7 @@ export default class Login extends React.Component {
                     </View>
                 </View>
 
-                <TouchableOpacity style={styles.button} onPress={this.handleLogin}>
+                <TouchableOpacity style={styles.button} onPress={() => this.props.handleLogin(this.state.email, this.state.password)}>
                     <Text style={{ color: "#FFF", fontWeight: "500" }}>Sign in</Text>
                 </TouchableOpacity>
 
@@ -70,51 +65,8 @@ export default class Login extends React.Component {
     }
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: "center"
-    },
-    greeting: {
-        marginBottom: 32,
-        fontSize: 18,
-        fontWeight: "400",
-        textAlign: "center"
-    },
-    errorMessage: {
-        height: 72,
-        alignItems: "center",
-        justifyContent: "center",
-        marginHorizontal: 30
-    },
-    error: {
-        color: "#E9446A",
-        fontSize: 13,
-        fontWeight: "600",
-        textAlign: "center"
-    },
-    form: {
-        marginBottom: 48,
-        marginHorizontal: 30
-    },
-    inputTitle: {
-        color: "#8A8F9E",
-        fontSize: 10,
-        textTransform: "uppercase"
-    },
-    input: {
-        borderBottomColor: "#8A8F9E",
-        borderBottomWidth: StyleSheet.hairlineWidth,
-        height: 40,
-        fontSize: 15,
-        color: "#161F3D"
-    },
-    button: {
-        marginHorizontal: 30,
-        backgroundColor: "#E9446A",
-        borderRadius: 4,
-        height: 52,
-        alignItems: "center",
-        justifyContent: "center"
-    }
-});
+const mapDispatch = dispatch => ({
+    handleLogin: (email, password) => dispatch(signIn(email, password))
+})
+
+export default connect(null, mapDispatch)(Login);
