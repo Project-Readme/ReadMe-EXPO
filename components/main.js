@@ -18,13 +18,14 @@ import 'react-native-gesture-handler';
 import { createStackNavigator } from 'react-navigation-stack';
 import SingleArticle from '../screens/SingleArticle';
 
-const ArticlesStack = createStackNavigator({
+const MyArticles = createStackNavigator({
     Articles: Articles,
     Article: SingleArticle
   });
 
-  const HomeStack = createStackNavigator({
+  const HomeScreen = createStackNavigator({
     Home: Home,
+    Article: SingleArticle,
   });
 
   const UserStack = createStackNavigator({
@@ -32,8 +33,8 @@ const ArticlesStack = createStackNavigator({
   });
 
   const TabNavigator = createBottomTabNavigator({
-    Home,
-    ArticlesStack,
+    HomeScreen,
+    MyArticles,
     User
   });
 
