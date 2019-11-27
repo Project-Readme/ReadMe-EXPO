@@ -23,8 +23,9 @@ const MyArticles = createStackNavigator({
     Article: SingleArticle
   });
 
-  const HomeStack = createStackNavigator({
+  const HomeScreen = createStackNavigator({
     Home: Home,
+    Article: SingleArticle,
   });
 
   const UserStack = createStackNavigator({
@@ -32,7 +33,7 @@ const MyArticles = createStackNavigator({
   });
 
   const TabNavigator = createBottomTabNavigator({
-    Home,
+    HomeScreen,
     MyArticles,
     User
   });
