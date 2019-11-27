@@ -1,13 +1,14 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { TopBar, ReadContent } from './components';
-import styles from './styles';
+
+import { Provider } from 'react-redux';
+
+import store from './store';
+import Main from './components/main';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <TopBar />
-      <ReadContent />
-    </View>
+    <Provider store={store}>
+      <Main />
+    </Provider>
   );
 }
