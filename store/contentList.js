@@ -20,14 +20,13 @@ export const loadContentList = () => async dispatch => {
 
         res.docs.forEach(doc => {
             const data = doc.data();
-            if (data.Title) {
-                contentList.push({
-                    id: doc.id,
-                    title: data.Title,
-                    html: data.Article,
-                    url: data.URL
-                })
-            }
+            contentList.push({
+                id: doc.id,
+                title: data.Title,
+                html: data.HTML,
+                css: data.CSS,
+                url: data.URL
+            })
         })
 
         dispatch({
