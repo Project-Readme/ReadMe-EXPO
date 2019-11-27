@@ -24,9 +24,10 @@ const AuthStack = createStackNavigator({
   Signup
 });
 
-const HomeStack = createStackNavigator({
-  Home: Home,
-});
+  const HomeScreen = createStackNavigator({
+    Home: Home,
+    Article: SingleArticle,
+  });
 
 const UserStack = createStackNavigator({
   User: User,
@@ -38,7 +39,7 @@ const ArticlesStack = createStackNavigator({
 });
 
 const TabNavigator = createBottomTabNavigator({
-  Home,
+  HomeScreen,
   ArticlesStack,
   User
 });
