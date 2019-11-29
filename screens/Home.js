@@ -1,7 +1,8 @@
 import React from 'react';
 import { Text, View, ScrollView } from 'react-native';
 import TopBar from '../components/topBar';
-import styles from '../styles'
+import styles from '../styles';
+import { connect } from 'react-redux';
 
 import Card from '../components/Card'
 import { FlatList } from 'react-native-gesture-handler';
@@ -26,6 +27,7 @@ const dummy = [
     },
 ]
 const Home = props => {
+    // console.log(props);
     return (
         <View style={styles.homeContainer}>
         <TopBar />
@@ -60,4 +62,9 @@ Home.navigationOptions = {
     header: null
 }
 
-export default Home;
+const mapStateToProps = state => ({
+    mostPopularList: state.mostPopularList
+});
+
+export default connect(mapStateToProps)(Home);
+

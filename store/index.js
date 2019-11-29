@@ -4,10 +4,15 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 
 import currentContentReducer from './currentContent';
 import contentListReducer from './contentList';
+import mostPopularReducer from './mostPopular';
 
 const logger = createLogger();
 
-const reducers = combineReducers({currentContent: currentContentReducer, contentList: contentListReducer});
+const reducers = combineReducers({
+    currentContent: currentContentReducer,
+    contentList: contentListReducer,
+    mostPopular: mostPopularReducer,
+});
 
 
 export default createStore(reducers, applyMiddleware(thunkMiddleware));
