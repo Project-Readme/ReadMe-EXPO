@@ -10,7 +10,6 @@ const GET_MOST_POPULAR = 'GET_MOST_POPULAR';
 */
 
 export const loadMostPopular = () => async dispatch => {
-
     try {
 
         const mostPopularList = [];

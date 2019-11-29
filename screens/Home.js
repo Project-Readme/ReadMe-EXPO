@@ -1,8 +1,9 @@
 import React from 'react';
-import { Text, View, ScrollView } from 'react-native';
+import { Text, View, ScrollView, TouchableOpacity } from 'react-native';
 import TopBar from '../components/topBar';
 import styles from '../styles';
 import { connect } from 'react-redux';
+import { setCurrentContent } from '../store/currentContent';
 
 import Card from '../components/Card'
 import { FlatList } from 'react-native-gesture-handler';
@@ -27,7 +28,7 @@ const dummy = [
     },
 ]
 const Home = props => {
-    // console.log(props);
+   const { navigate } = props.navigation;
     return (
         <View style={styles.homeContainer}>
         <TopBar />
@@ -37,7 +38,19 @@ const Home = props => {
                 style={{ paddingBottom: 20 }}
                 showsHorizontalScrollIndicator={false}
             >
-                {dummy.map((item, idx) => <Card key={idx} title={item.title} image={item.img} />)}
+                {props.mostPopularList.map((item) => (
+                <TouchableOpacity
+                key={item.id}
+                onPress={
+                    () => {
+                        props.setCurrentContent(item);
+                        navigate('Article');
+                    }
+                }
+                >
+                <Card title={item.title} image={{ uri: 'https://miro.medium.com/max/2957/1*HwO6wiOHiJrN1_jePQrmEA.jpeg' }} />
+                </TouchableOpacity>
+                ))}
             </ScrollView>
             <Text style={{ color: '#747882', padding: 10, paddingBottom: 0, fontSize: 24, fontWeight: 'bold' }}>Recommended</Text>
 
@@ -62,9 +75,15 @@ Home.navigationOptions = {
     header: null
 }
 
-const mapStateToProps = state => ({
-    mostPopularList: state.mostPopularList
-});
+const mapStateToProps = state => {
+    return {
+        mostPopularList: state.mostPopularList
+        }
+    };
 
-export default connect(mapStateToProps)(Home);
+const mapDispatchToProps = dispatch => ({
+    setCurrentContent: (article) => dispatch(setCurrentContent(article))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps )(Home);
 

@@ -11,7 +11,7 @@ const logger = createLogger();
 const reducers = combineReducers({
     currentContent: currentContentReducer,
     contentList: contentListReducer,
-    mostPopular: mostPopularReducer,
+    mostPopularList: mostPopularReducer,
 });
 
 

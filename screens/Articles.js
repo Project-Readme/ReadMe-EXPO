@@ -17,9 +17,9 @@ class AllArticles extends React.Component {
             <View >
                 <TopBar />
                 <ScrollView>
-                { this.props.contentList.map((article, index) => (
+                { this.props.contentList.map((article) => (
                             <TouchableOpacity
-                            key={index}
+                            key={article.id}
                             onPress={
                                 () => {
                                     this.props.setCurrentContent(article);
