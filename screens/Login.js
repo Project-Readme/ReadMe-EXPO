@@ -22,7 +22,6 @@ class Login extends React.Component {
         if (errorMessage) {
             this.setState({errorMessage});
         } else {
-            console.log("login complete, time to go home")
             this.props.navigation.navigate("Home");
         }
     }
