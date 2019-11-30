@@ -19,14 +19,31 @@ const LOGOUT = "LOGOUT";
 /*
     thunkety-thunks
     */
+
+export const signUp = (displayName, email, password) => async dispatch => {
+    try {
+        let userCredentials = await firebase.auth()
+        .createUserWithEmailAndPassword(email, password);
+
+        await userCredentials.user.updateProfile({displayName});
+
+        dispatch({
+            type: LOGIN,
+            user: {displayName, email}
+        })
+
+    } catch (error) {
+        return error.message;
+    }
+}
   
 export const signIn = (email, password) => async dispatch => {
 
     try {
-        user = await firebase.auth()
+        await firebase.auth()
                     .signInWithEmailAndPassword(email, password);
                     
-        // user = firebase.auth().currentUser;
+        user = firebase.auth().currentUser;
         
         dispatch({
             type: LOGIN,

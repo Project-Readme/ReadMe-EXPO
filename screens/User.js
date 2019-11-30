@@ -1,6 +1,6 @@
 import React from 'react';
 import TopBar from '../components/topBar';
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { connect } from 'react-redux';
 
 import { signOut } from '../store/user';

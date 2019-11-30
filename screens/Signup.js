@@ -1,8 +1,12 @@
 import React from "react";
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from "react-native";
-import * as firebase from "firebase";
+import { signUp } from '../store/user';
+import { connect } from 'react-redux';
 
-export default class RegisterScreen extends React.Component {
+import styles from '../styles';
+
+
+class RegisterScreen extends React.Component {
     constructor() {
         super()
         this.state = {
@@ -12,17 +16,14 @@ export default class RegisterScreen extends React.Component {
             errorMessage: null
         };
     }
-    handleSignUp = () => {
-        firebase
-            .auth()
-            .createUserWithEmailAndPassword(this.state.email, this.state.password)
-            .then(userCredentials => {
-                return userCredentials.user.updateProfile({
-                    displayName: this.state.name
-                });
-            })
-            .catch(error => this.setState({ errorMessage: error.message }));
-    };
+    handleSignUp = async () => {
+        const {name, email, password} = this.state;
+        const errorMessage = await this.props.signUp(name, email, password);
+        if (errorMessage) {
+            this.setState({errorMessage});
+        }
+    }
+
 
     render() {
         return (
@@ -72,7 +73,7 @@ export default class RegisterScreen extends React.Component {
 
                 <TouchableOpacity style={{ alignSelf: "center", marginTop: 32 }}>
                     <Text style={{ color: "#414959", fontSize: 13 }}>
-                        New to ReadMe? <Text style={{ fontWeight: "500", color: "#E9446A" }}>Login</Text>
+                        Already have an account? <Text style={{ fontWeight: "500", color: "#E9446A" }}>Login</Text>
                     </Text>
                 </TouchableOpacity>
             </View>
@@ -80,50 +81,8 @@ export default class RegisterScreen extends React.Component {
     }
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1
-    },
-    greeting: {
-        marginTop: 32,
-        fontSize: 18,
-        fontWeight: "400",
-        textAlign: "center"
-    },
-    errorMessage: {
-        height: 72,
-        alignItems: "center",
-        justifyContent: "center",
-        marginHorizontal: 30
-    },
-    error: {
-        color: "#E9446A",
-        fontSize: 13,
-        fontWeight: "600",
-        textAlign: "center"
-    },
-    form: {
-        marginBottom: 48,
-        marginHorizontal: 30
-    },
-    inputTitle: {
-        color: "#8A8F9E",
-        fontSize: 10,
-        textTransform: "uppercase"
-    },
-    input: {
-        borderBottomColor: "#8A8F9E",
-        borderBottomWidth: StyleSheet.hairlineWidth,
-        height: 40,
-        fontSize: 15,
-        color: "#161F3D"
-    },
-    button: {
-        marginHorizontal: 30,
-        backgroundColor: "#E9446A",
-        borderRadius: 4,
-        height: 52,
-        alignItems: "center",
-        justifyContent: "center"
-    }
-});
+const mapDispatch = dispatch => ({
+    signUp: (name, email, password) => dispatch(signUp(name, email, password))
+})
+
+export default connect(null, mapDispatch)(RegisterScreen);
