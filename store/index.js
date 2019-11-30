@@ -7,7 +7,7 @@ import contentListReducer from './contentList';
 import mostPopularReducer from './mostPopularList';
 import userReducer from './user';
 
-const logger = createLogger();
+// const logger = createLogger();
 
 const reducers = combineReducers({
     currentContent: currentContentReducer,
@@ -17,4 +17,4 @@ const reducers = combineReducers({
 });
 
 
-export default createStore(reducers, applyMiddleware(thunkMiddleware, logger));
+export default createStore(reducers, applyMiddleware(thunkMiddleware));
