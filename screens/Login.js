@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from "react-native";
+import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import { connect } from 'react-redux';
 
 import { signIn } from '../store/user';
@@ -15,6 +15,17 @@ class Login extends React.Component {
         };
     }
 
+    handleLogin = async () => {
+        const { email, password } = this.state;
+
+        const errorMessage = await this.props.signIn(email, password);
+        if (errorMessage) {
+            this.setState({errorMessage});
+        } else {
+            console.log("login complete, time to go home")
+            this.props.navigation.navigate("Home");
+        }
+    }
   
     render() {
         return (
@@ -48,7 +59,7 @@ class Login extends React.Component {
                     </View>
                 </View>
 
-                <TouchableOpacity style={styles.button} onPress={() => this.props.handleLogin(this.state.email, this.state.password)}>
+                <TouchableOpacity style={styles.button} onPress={this.handleLogin}>
                     <Text style={{ color: "#FFF", fontWeight: "500" }}>Sign in</Text>
                 </TouchableOpacity>
 
@@ -66,7 +77,7 @@ class Login extends React.Component {
 }
 
 const mapDispatch = dispatch => ({
-    handleLogin: (email, password) => dispatch(signIn(email, password))
+    signIn: (email, password) => dispatch(signIn(email, password))
 })
 
 export default connect(null, mapDispatch)(Login);

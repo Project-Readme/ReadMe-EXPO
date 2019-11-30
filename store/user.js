@@ -24,17 +24,20 @@ export const signIn = (email, password) => async dispatch => {
 
     try {
         user = await firebase.auth()
-                    .signInWithEmailAndPassword(email, password)
-                    .currentUser;
+                    .signInWithEmailAndPassword(email, password);
+                    
+        // user = firebase.auth().currentUser;
         
-        console.log("user", user);
         dispatch({
             type: LOGIN,
-            user
+            user: {
+                displayName: user.displayName,
+                email: user.email,
+                uid: user.uid
+            }
         })
     } catch (error) {
-        console.error(error);
-
+        return error.message;
     }
 }
     
@@ -45,7 +48,8 @@ export const signOut = () =>  dispatch => {
             type: LOGOUT,
         })
     } catch (error) {
-        console.error(error)
+        console.error(error);
+        return error.message;
     }
 }
 

@@ -12,7 +12,10 @@ function User(props) {
             <TopBar></TopBar>
             <Text>Hi {props.displayName}!</Text>
 
-            <TouchableOpacity style={{ marginTop: 32 }} onPress={this.signOutUser}>
+            <TouchableOpacity style={{ marginTop: 32 }} onPress={() => {
+                props.signOutUser();
+                props.navigation.navigate("Auth");
+            }}>
                 <Text>Logout</Text>
             </TouchableOpacity>
         </View>
@@ -25,6 +28,7 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
     signOutUser: () => dispatch(signOut())
+        
 })
 
 export default connect(mapState, mapDispatch)(User);
