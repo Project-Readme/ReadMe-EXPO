@@ -6,13 +6,13 @@ import currentContentReducer from './currentContent';
 import contentListReducer from './contentList';
 import userReducer from './user';
 
-const logger = createLogger();
+// const logger = createLogger();
 
 const reducers = combineReducers({
-    currentContent: currentContentReducer, 
+    currentContent: currentContentReducer,
     contentList: contentListReducer,
     user: userReducer
 });
 
 
-export default createStore(reducers, applyMiddleware(thunkMiddleware, logger));
+export default createStore(reducers, applyMiddleware(thunkMiddleware));
