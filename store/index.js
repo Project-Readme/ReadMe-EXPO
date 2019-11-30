@@ -4,7 +4,7 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 
 import currentContentReducer from './currentContent';
 import contentListReducer from './contentList';
-import mostPopularReducer from './mostPopular';
+import mostPopularReducer from './mostPopularList';
 
 const logger = createLogger();
 

@@ -7,7 +7,7 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { connect } from 'react-redux';
 
 import { loadContentList } from '../store/contentList';
-import { loadMostPopular } from '../store/mostPopular';
+import { loadMostPopular } from '../store/mostPopularList';
 
 import Home from '../screens/Home'
 import Articles from '../screens/Articles'
