@@ -23,7 +23,7 @@ function User(props) {
 }
 
 const mapState = state => ({
-    displayName: state.user.displayName.trim()
+    displayName: state.user.displayName ? state.user.displayName.trim() : "friend"
 })
 
 const mapDispatch = dispatch => ({
