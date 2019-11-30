@@ -7,6 +7,7 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { connect } from 'react-redux';
 
 import { loadContentList } from '../store/contentList';
+import { loadMostPopular } from '../store/mostPopularList';
 
 import Home from '../screens/Home'
 import Articles from '../screens/Articles'
@@ -58,6 +59,7 @@ class Main extends React.Component {
 
   componentDidMount() {
     this.props.loadContentList();
+    this.props.loadMostPopular();
   }
 
   render() {
@@ -70,7 +72,8 @@ class Main extends React.Component {
 }
 
 const mapDispatch = dispatch => ({
-  loadContentList: () => dispatch(loadContentList())
+  loadContentList: () => dispatch(loadContentList()),
+  loadMostPopular: () => dispatch(loadMostPopular())
 })
 
 export default connect(null, mapDispatch)(Main);
