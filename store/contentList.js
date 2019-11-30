@@ -24,9 +24,10 @@ export const loadContentList = () => async dispatch => {
             contentList.push({
                 id: doc.id,
                 title: data.Title,
-                html: data.HTML,
-                css: data.CSS,
-                url: data.URL
+                body: data.Body,
+                head: data.Head,
+                url: data.URL,
+                image: data.Image
             })
         })
 

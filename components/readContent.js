@@ -8,11 +8,9 @@ import { connect } from 'react-redux';
 class ReadContent extends React.Component {
   render() {
     return (<WebView
-source={{ html: `<html> 
-                    <head> 
-                    <style> ${this.props.currentContent.css} </style>
-                    </head>
-                    ${this.props.currentContent.html}
+source={{ html: `<html>                   
+                    ${this.props.currentContent.head} 
+                    ${this.props.currentContent.body}
                   </html>`}}
     style={{
       flex: 1,
