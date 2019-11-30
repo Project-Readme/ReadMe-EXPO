@@ -29,7 +29,7 @@ class AllArticles extends React.Component {
                             >
                                 <Card
                                     title={article.title}
-                                    image={{uri: 'https://miro.medium.com/max/2400/1*wMjnTSs_-znQ2NRUjysK4w.png'}}
+                                    image={{uri: article.image}}
                                 />
                             </TouchableOpacity>
                 ))
