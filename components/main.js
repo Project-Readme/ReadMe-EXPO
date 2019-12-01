@@ -2,60 +2,75 @@ import React from 'react';
 import { View } from 'react-native';
 import styles from '../styles'
 
-import { createAppContainer } from 'react-navigation';
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { connect } from 'react-redux';
 
 import { loadContentList } from '../store/contentList';
 
-
 import Home from '../screens/Home'
 import Articles from '../screens/Articles'
 import User from '../screens/User'
-
+import Login from '../screens/Login'
+import Signup from '../screens/Signup'
+import Loading from '../screens/Loading'
 
 import 'react-native-gesture-handler';
 import { createStackNavigator } from 'react-navigation-stack';
 import SingleArticle from '../screens/SingleArticle';
 
-const ArticlesStack = createStackNavigator({
-    Articles: Articles,
-    Article: SingleArticle
-  });
+const AuthStack = createStackNavigator({
+  Login,
+  Signup
+});
 
-  const HomeStack = createStackNavigator({
+  const HomeScreen = createStackNavigator({
     Home: Home,
+    Article: SingleArticle,
   });
 
-  const UserStack = createStackNavigator({
-    User: User,
-  });
+const UserStack = createStackNavigator({
+  User: User,
+});
 
-  const TabNavigator = createBottomTabNavigator({
-    Home,
-    ArticlesStack,
-    User
-  });
+const ArticlesStack = createStackNavigator({
+  Articles: Articles,
+  Article: SingleArticle
+});
 
-const BottomTabNavigator = createAppContainer(TabNavigator);
+const TabNavigator = createBottomTabNavigator({
+  HomeScreen,
+  ArticlesStack,
+  User
+});
+
+const AuthSwitchNavigator = createSwitchNavigator(
+  {
+    Loading,
+    Home: TabNavigator,
+    Auth: AuthStack
+  }
+)
+
+const SwitchNavigator = createAppContainer(AuthSwitchNavigator);
 
 class Main extends React.Component {
 
-    componentDidMount() {
-        this.props.loadContentList();
-    }
+  componentDidMount() {
+    this.props.loadContentList();
+  }
 
-    render() {
-        return (
-            <View style={styles.container}>
-                <BottomTabNavigator />
-            </View>
-        );
-    }
+  render() {
+    return (
+      <View style={styles.container}>
+        <SwitchNavigator />
+      </View>
+    );
+  }
 }
 
 const mapDispatch = dispatch => ({
-    loadContentList: () => dispatch(loadContentList())
+  loadContentList: () => dispatch(loadContentList())
 })
 
 export default connect(null, mapDispatch)(Main);
