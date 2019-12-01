@@ -48,7 +48,10 @@ const Home = props => {
                     }
                 }
                 >
-                <Card title={item.title} image={{ uri: 'https://miro.medium.com/max/2957/1*HwO6wiOHiJrN1_jePQrmEA.jpeg' }} />
+                <Card
+                title={item.title}
+                image={{ uri: item.image }}
+                />
                 </TouchableOpacity>
                 ))}
             </ScrollView>
