@@ -24,21 +24,15 @@ class AllArticles extends React.Component {
       <View>
         <TopBar />
         <ScrollView>
-          {this.props.contentList.map((article, index) => (
+          {this.props.contentList.map(article => (
             <TouchableOpacity
-              key={index}
+              key={article.id}
               onPress={() => {
                 this.props.setCurrentContent(article);
                 navigate('Article');
               }}
             >
-              <Card
-                title={article.title}
-                image={{
-                  uri:
-                    'https://miro.medium.com/max/2400/1*wMjnTSs_-znQ2NRUjysK4w.png',
-                }}
-              />
+              <Card title={article.title} image={{ uri: article.image }} />
             </TouchableOpacity>
           ))}
         </ScrollView>

@@ -1,12 +1,14 @@
 import React from "react";
-import { View, Text, StyleSheet, ActivityIndicator } from "react-native";
-import * as firebase from "firebase";
+import { View, Text, ActivityIndicator } from "react-native";
+import { connect } from 'react-redux';
 
-export default class LoadingScreen extends React.Component {
+import styles from '../styles';
+
+class LoadingScreen extends React.Component {
+
     componentDidMount() {
-        firebase.auth().onAuthStateChanged(user => {
-            this.props.navigation.navigate(user ? "Home" : "Auth");
-        });
+        const {user} = this.props;
+        this.props.navigation.navigate(user.email ? "Home" : "Auth");
     }
 
     render() {
@@ -19,10 +21,8 @@ export default class LoadingScreen extends React.Component {
     }
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center"
-    }
-});
+const mapState = state => ({
+    user: state.user
+})
+
+export default connect(mapState)(LoadingScreen);

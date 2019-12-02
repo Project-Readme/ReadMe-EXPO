@@ -16,14 +16,14 @@ export const loadContentList = () => async dispatch => {
 
     res.docs.forEach(doc => {
       const data = doc.data();
-      if (data.Title) {
-        contentList.push({
-          id: doc.id,
-          title: data.Title,
-          html: data.Article,
-          url: data.URL,
-        });
-      }
+      contentList.push({
+        id: doc.id,
+        title: data.Title,
+        body: data.Body,
+        head: data.Head,
+        url: data.URL,
+        image: data.Image,
+      });
     });
 
     dispatch({

@@ -10,7 +10,7 @@ export default function() {
         source={require('../assets/icon.png')}
       />
       <Text style={{ marginTop: 10, color: 'white', fontSize: 20 }}>
-        ReadMe: Reading Made Easy
+        ReadMe: Reading on the Go
       </Text>
     </View>
   );
