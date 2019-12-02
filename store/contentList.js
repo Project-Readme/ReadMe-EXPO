@@ -17,7 +17,6 @@ export const loadContentList = (user) => async dispatch => {
         const res = await db.collection('users').doc(`${user}`).collection('articles')
 .get()
 
-
         res.docs.forEach(doc => {
             const data = doc.data();
             contentList.push({
