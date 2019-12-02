@@ -1,5 +1,5 @@
-import React from "react";
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from "react-native";
+import React from 'react';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import { signUp } from '../store/user';
 import { connect } from 'react-redux';
 
@@ -10,9 +10,9 @@ class RegisterScreen extends React.Component {
     constructor() {
         super()
         this.state = {
-            name: "",
-            email: "",
-            password: "",
+            name: '',
+            email: '',
+            password: '',
             errorMessage: null
         };
     }
@@ -21,6 +21,8 @@ class RegisterScreen extends React.Component {
         const errorMessage = await this.props.signUp(name, email, password);
         if (errorMessage) {
             this.setState({errorMessage});
+        } else {
+            this.props.navigation.navigate('Home');
         }
     }
 
@@ -42,7 +44,7 @@ class RegisterScreen extends React.Component {
                             autoCapitalize="none"
                             onChangeText={name => this.setState({ name })}
                             value={this.state.name}
-                        ></TextInput>
+                         />
                     </View>
 
                     <View style={{ marginTop: 32 }}>
@@ -52,7 +54,7 @@ class RegisterScreen extends React.Component {
                             autoCapitalize="none"
                             onChangeText={email => this.setState({ email })}
                             value={this.state.email}
-                        ></TextInput>
+                         />
                     </View>
 
                     <View style={{ marginTop: 32 }}>
@@ -63,17 +65,17 @@ class RegisterScreen extends React.Component {
                             autoCapitalize="none"
                             onChangeText={password => this.setState({ password })}
                             value={this.state.password}
-                        ></TextInput>
+                         />
                     </View>
                 </View>
 
                 <TouchableOpacity style={styles.button} onPress={this.handleSignUp}>
-                    <Text style={{ color: "#FFF", fontWeight: "500" }}>Sign up</Text>
+                    <Text style={{ color: '#FFF', fontWeight: '500' }}>Sign up</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={{ alignSelf: "center", marginTop: 32 }}>
-                    <Text style={{ color: "#414959", fontSize: 13 }}>
-                        Already have an account? <Text style={{ fontWeight: "500", color: "#E9446A" }}>Login</Text>
+                <TouchableOpacity style={{ alignSelf: 'center', marginTop: 32 }}>
+                    <Text style={{ color: '#414959', fontSize: 13 }}>
+                        Already have an account? <Text style={{ fontWeight: '500', color: '#E9446A' }}>Login</Text>
                     </Text>
                 </TouchableOpacity>
             </View>

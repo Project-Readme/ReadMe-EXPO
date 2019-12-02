@@ -58,8 +58,11 @@ const SwitchNavigator = createAppContainer(AuthSwitchNavigator);
 class Main extends React.Component {
 
   componentDidMount() {
-    this.props.loadContentList();
-    this.props.loadMostPopular();
+    console.log(this.props.isConnected)
+    if (this.props.isConnected) {
+      this.props.loadContentList();
+      this.props.loadMostPopular();
+    }
   }
 
   render() {
@@ -71,9 +74,13 @@ class Main extends React.Component {
   }
 }
 
+const mapStateToProps = state => ({
+  isConnected: state.network.isConnected
+})
+
 const mapDispatch = dispatch => ({
   loadContentList: () => dispatch(loadContentList()),
   loadMostPopular: () => dispatch(loadMostPopular())
 })
 
-export default connect(null, mapDispatch)(Main);
+export default connect(mapStateToProps, mapDispatch)(Main);
