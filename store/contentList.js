@@ -1,4 +1,3 @@
-
 import db from '../database';
 
 /*
@@ -45,11 +44,11 @@ export const loadContentList = (user) => async dispatch => {
     Reducer
 */
 
-export default function (contentList = [], action) {
-    switch (action.type) {
-        case LOAD_CONTENT_LIST:
-            return action.contentList;
-        default:
-            return contentList;
-    }
+export default function(contentList = [], action) {
+  switch (action.type) {
+    case LOAD_CONTENT_LIST:
+      return action.contentList;
+    default:
+      return contentList;
+  }
 }

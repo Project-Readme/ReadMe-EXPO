@@ -5,5 +5,4 @@ import secrets from '../secrets';
 firebase.initializeApp(secrets);
 let db = firebase.firestore();
 
-
 export default db;
