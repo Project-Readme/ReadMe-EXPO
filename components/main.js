@@ -61,11 +61,12 @@ const SwitchNavigator = createAppContainer(AuthSwitchNavigator);
 class Main extends React.Component {
 
   componentDidMount() {
+    console.log(this.props)
+
     checkInternetConnection().then(isConnected => {
       this.props.connectionChange(isConnected);
-      console.log(isConnected)
-      if (isConnected) {
-        this.props.loadContentList();
+      if (isConnected && this.props.user) {
+        this.props.loadContentList(this.props.user);
         this.props.loadMostPopular();
       }
     })
@@ -80,10 +81,14 @@ class Main extends React.Component {
   }
 }
 
+const mapStateToProps = state => ({
+  user: state.user.email
+});
+
 const mapDispatch = dispatch => ({
-  loadContentList: () => dispatch(loadContentList()),
+  loadContentList: (user) => dispatch(loadContentList(user)),
   loadMostPopular: () => dispatch(loadMostPopular()),
   connectionChange: (isConnected) => dispatch(offlineActionCreators.connectionChange(isConnected))
 })
 
-export default connect(null, mapDispatch)(Main);
+export default connect(mapStateToProps, mapDispatch)(Main);

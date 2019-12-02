@@ -6,15 +6,16 @@ import db from '../database';
 */
 const LOAD_CONTENT_LIST = 'LOAD_CONTNENT_LIST';
 
-
 /*
     Action Creators
 */
 
-export const loadContentList = () => async dispatch => {
+export const loadContentList = (user) => async dispatch => {
+
     try {
         const contentList = [];
-        const res = await db.collection('content').get()
+        const res = await db.collection('users').doc(`${user}`).collection('articles')
+.get()
 
         res.docs.forEach(doc => {
             const data = doc.data();
