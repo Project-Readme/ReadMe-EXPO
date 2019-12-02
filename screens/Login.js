@@ -6,14 +6,15 @@ import { signIn } from '../store/user';
 import styles from '../styles';
 
 class Login extends React.Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             email: '',
             password: '',
             errorMessage: null
         };
     }
+
 
     handleLogin = async () => {
         const { email, password } = this.state;
@@ -27,8 +28,9 @@ class Login extends React.Component {
     }
 
     render() {
-        // console.log(this.props.isConnected)
-        // if (this.props.isConnected) {
+        console.log(this.props.isConnected);
+        console.log(this.props);
+        if (this.props.isConnected) {
             return (
                 <View style={styles.container}>
                     <Text style={styles.greeting}>Welcome!</Text>
@@ -74,13 +76,13 @@ class Login extends React.Component {
                     </TouchableOpacity>
                 </View>
             );
-        // } else {
-        //     return (
-        //     <View style={styles.container}>
-        //         <Text>Please Connect To Internet to Login or Signup</Text>
-        //     </View>
-        //     )
-        // }
+        } else {
+            return (
+            <View style={styles.container}>
+                <Text>Please Connect To Internet to Login or Signup</Text>
+            </View>
+            )
+        }
     }
 }
 

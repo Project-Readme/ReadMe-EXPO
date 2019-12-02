@@ -5,6 +5,7 @@ import styles from '../styles'
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { connect } from 'react-redux';
+import { checkInternetConnection, offlineActionCreators } from 'react-native-offline';
 
 import { loadContentList } from '../store/contentList';
 import { loadMostPopular } from '../store/mostPopularList';
@@ -58,11 +59,14 @@ const SwitchNavigator = createAppContainer(AuthSwitchNavigator);
 class Main extends React.Component {
 
   componentDidMount() {
-    console.log(this.props.isConnected)
-    if (this.props.isConnected) {
-      this.props.loadContentList();
-      this.props.loadMostPopular();
-    }
+    checkInternetConnection().then(isConnected => {
+      this.props.connectionChange(isConnected);
+      console.log(isConnected)
+      if (isConnected) {
+        this.props.loadContentList();
+        this.props.loadMostPopular();
+      }
+    }) 
   }
 
   render() {
@@ -74,13 +78,10 @@ class Main extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  isConnected: state.network.isConnected
-})
-
 const mapDispatch = dispatch => ({
   loadContentList: () => dispatch(loadContentList()),
-  loadMostPopular: () => dispatch(loadMostPopular())
+  loadMostPopular: () => dispatch(loadMostPopular()),
+  connectionChange: (isConnected) => dispatch(offlineActionCreators.connectionChange(isConnected))
 })
 
-export default connect(mapStateToProps, mapDispatch)(Main);
+export default connect(null, mapDispatch)(Main);
