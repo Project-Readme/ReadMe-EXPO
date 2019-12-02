@@ -28,8 +28,6 @@ class Login extends React.Component {
     }
 
     render() {
-        console.log(this.props.isConnected);
-        console.log(this.props);
         if (this.props.isConnected) {
             return (
                 <View style={styles.container}>
