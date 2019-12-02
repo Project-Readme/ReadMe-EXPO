@@ -14,19 +14,18 @@ export const loadMostPopular = () => async dispatch => {
 
         const mostPopularList = [];
         const res = await db.collection('articles')
-        .orderBy('popularity', 'desc')
-        .limit(3)
+        .orderBy('Popularity', 'desc')
+        .limit(5)
         .get();
 
         res.docs.forEach(doc => {
             const data = doc.data();
             mostPopularList.push({
                 id: doc.id,
-                title: data.title,
-                html: data.body,
-                css: data.header,
-                url: data.url,
-                popularity: data.popularity,
+                title: data.Title,
+                body: data.Body,
+                head: data.Head,
+                image: data.Image,
             })
         })
 
