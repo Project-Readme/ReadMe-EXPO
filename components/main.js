@@ -16,6 +16,7 @@ import User from '../screens/User'
 import Login from '../screens/Login'
 import Signup from '../screens/Signup'
 import Loading from '../screens/Loading'
+import Search from '../screens/Search'
 
 import 'react-native-gesture-handler';
 import { createStackNavigator } from 'react-navigation-stack';
@@ -26,10 +27,10 @@ const AuthStack = createStackNavigator({
   Signup
 });
 
-  const HomeScreen = createStackNavigator({
-    Home: Home,
-    Article: SingleArticle,
-  });
+const HomeScreen = createStackNavigator({
+  Home: Home,
+  Article: SingleArticle,
+});
 
 const UserStack = createStackNavigator({
   User: User,
@@ -41,8 +42,9 @@ const ArticlesStack = createStackNavigator({
 });
 
 const TabNavigator = createBottomTabNavigator({
-  HomeScreen,
-  ArticlesStack,
+  Home: HomeScreen,
+  Articles: ArticlesStack,
+  Search,
   User
 });
 
@@ -66,7 +68,7 @@ class Main extends React.Component {
         this.props.loadContentList();
         this.props.loadMostPopular();
       }
-    }) 
+    })
   }
 
   render() {
