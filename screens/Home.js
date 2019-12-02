@@ -5,9 +5,9 @@ import styles from '../styles';
 import { connect } from 'react-redux';
 import { setCurrentContent } from '../store/currentContent';
 
-import Card from '../components/card';
+import Card from '../components/Card';
 import { FlatList } from 'react-native-gesture-handler';
-import ArticleCard from '../components/articleCard';
+import ArticleCard from '../components/ArticleCard';
 
 const Home = props => {
     const { navigate } = props.navigation;
@@ -43,7 +43,7 @@ const Home = props => {
 }
 
 Home.navigationOptions = {
-  header: null,
+    header: null,
 };
 
 const mapStateToProps = state => {
