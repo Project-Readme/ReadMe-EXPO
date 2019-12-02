@@ -41,7 +41,8 @@ class AllArticles extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    contentList: state.contentList
+    contentList: state.contentList,
+    user: state.user.email
 });
 
 const mapDispatchToProps = dispatch => ({
