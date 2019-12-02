@@ -5,6 +5,7 @@ import styles from '../styles'
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { connect } from 'react-redux';
+import { checkInternetConnection, offlineActionCreators } from 'react-native-offline';
 
 import { loadContentList } from '../store/contentList';
 import { loadMostPopular } from '../store/mostPopularList';
@@ -15,6 +16,7 @@ import User from '../screens/User'
 import Login from '../screens/Login'
 import Signup from '../screens/Signup'
 import Loading from '../screens/Loading'
+import Search from '../screens/Search'
 
 import 'react-native-gesture-handler';
 import { createStackNavigator } from 'react-navigation-stack';
@@ -25,10 +27,10 @@ const AuthStack = createStackNavigator({
   Signup
 });
 
-  const HomeScreen = createStackNavigator({
-    Home: Home,
-    Article: SingleArticle,
-  });
+const HomeScreen = createStackNavigator({
+  Home: Home,
+  Article: SingleArticle,
+});
 
 const UserStack = createStackNavigator({
   User: User,
@@ -40,8 +42,9 @@ const ArticlesStack = createStackNavigator({
 });
 
 const TabNavigator = createBottomTabNavigator({
-  HomeScreen,
-  ArticlesStack,
+  Home: HomeScreen,
+  Articles: ArticlesStack,
+  Search,
   User
 });
 
@@ -58,8 +61,15 @@ const SwitchNavigator = createAppContainer(AuthSwitchNavigator);
 class Main extends React.Component {
 
   componentDidMount() {
-    this.props.loadContentList();
-    this.props.loadMostPopular();
+    console.log(this.props)
+
+    checkInternetConnection().then(isConnected => {
+      this.props.connectionChange(isConnected);
+      if (isConnected && this.props.user) {
+        this.props.loadContentList(this.props.user);
+        this.props.loadMostPopular();
+      }
+    })
   }
 
   render() {
@@ -71,9 +81,14 @@ class Main extends React.Component {
   }
 }
 
+const mapStateToProps = state => ({
+  user: state.user.email
+});
+
 const mapDispatch = dispatch => ({
-  loadContentList: () => dispatch(loadContentList()),
-  loadMostPopular: () => dispatch(loadMostPopular())
+  loadContentList: (user) => dispatch(loadContentList(user)),
+  loadMostPopular: () => dispatch(loadMostPopular()),
+  connectionChange: (isConnected) => dispatch(offlineActionCreators.connectionChange(isConnected))
 })
 
-export default connect(null, mapDispatch)(Main);
+export default connect(mapStateToProps, mapDispatch)(Main);

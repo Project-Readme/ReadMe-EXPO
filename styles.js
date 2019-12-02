@@ -50,7 +50,7 @@ module.exports = StyleSheet.create({
     marginBottom: 32,
     fontSize: 18,
     fontWeight: '400',
-    textAlign: 'center',
+    textAlign: 'center'
   },
   errorMessage: {
     height: 72,
@@ -67,11 +67,12 @@ module.exports = StyleSheet.create({
   form: {
     marginBottom: 48,
     marginHorizontal: 30,
+
   },
   inputTitle: {
     color: '#8A8F9E',
     fontSize: 10,
-    textTransform: 'uppercase',
+    textTransform: 'uppercase'
   },
   input: {
     borderBottomColor: '#8A8F9E',
@@ -89,8 +90,40 @@ module.exports = StyleSheet.create({
     justifyContent: 'center',
   },
   AllArticles: {
-    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
+  AllArticlesContainer: {
+    flex: 1
+  },
+  searchBarContainer: {
+    margin: 10,
+    padding: 2,
+    flexDirection: 'column',
+  },
+  searchBar: {
+    margin: 5,
+    fontSize: 22,
+    borderRadius: 12,
+    borderColor: 'black',
+    borderWidth: 1,
+    backgroundColor: 'rgba(0,0,0,0.1)',
+    padding: 4
+  },
+  searchButton: {
+    marginTop: 10,
+    marginHorizontal: 30,
+    backgroundColor: '#E9446A',
+    borderRadius: 8,
+    height: 52,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  statusText: {
+    marginTop: 20,
+    marginBottom: 35,
+    textAlign: 'center',
+    fontSize: 20,
+    fontWeight: '400'
+  }
 });

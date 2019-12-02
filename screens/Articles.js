@@ -14,31 +14,37 @@ import { setCurrentContent } from '../store/currentContent';
 import styles from '../styles';
 
 class AllArticles extends React.Component {
-  static navigationOptions = {
-    header: null,
-  };
+    static navigationOptions = {
+        header: null
+    };
 
-  render() {
-    const { navigate } = this.props.navigation;
-    return (
-      <View>
-        <TopBar />
-        <ScrollView>
-          {this.props.contentList.map(article => (
-            <TouchableOpacity
-              key={article.id}
-              onPress={() => {
-                this.props.setCurrentContent(article);
-                navigate('Article');
-              }}
-            >
-              <Card title={article.title} image={{ uri: article.image }} />
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
-      </View>
-    );
-  }
+    render() {
+        const { navigate } = this.props.navigation;
+        return (
+            <View style={styles.AllArticlesContainer} >
+                <TopBar />
+                <ScrollView contentContainerStyle={styles.AllArticles}>
+                    {this.props.contentList.map((article) => (
+                        <TouchableOpacity
+                            key={article.id}
+                            onPress={
+                                () => {
+                                    this.props.setCurrentContent(article);
+                                    navigate('Article');
+                                }
+                            }
+                        >
+                            <Card
+                                title={article.title}
+                                image={{ uri: article.image }}
+                            />
+                        </TouchableOpacity>
+                    ))
+                    }
+                </ScrollView>
+            </View>
+        );
+    }
 }
 
 const mapStateToProps = state => ({

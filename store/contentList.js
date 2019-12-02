@@ -9,31 +9,36 @@ const LOAD_CONTENT_LIST = 'LOAD_CONTNENT_LIST';
     Action Creators
 */
 
-export const loadContentList = () => async dispatch => {
-  try {
-    const contentList = [];
-    const res = await db.collection('content').get();
+export const loadContentList = (user) => async dispatch => {
 
-    res.docs.forEach(doc => {
-      const data = doc.data();
-      contentList.push({
-        id: doc.id,
-        title: data.Title,
-        body: data.Body,
-        head: data.Head,
-        url: data.URL,
-        image: data.Image,
-      });
-    });
+    try {
+        const contentList = [];
+        const res = await db.collection('users').doc(`${user}`).collection('articles')
+.get()
 
-    dispatch({
-      type: LOAD_CONTENT_LIST,
-      contentList,
-    });
-  } catch (error) {
-    console.error(error);
-  }
-};
+        res.docs.forEach(doc => {
+            const data = doc.data();
+            contentList.push({
+                id: doc.id,
+                title: data.Title,
+                body: data.Body,
+                head: data.Head,
+                url: data.URL,
+                image: data.Image
+            })
+        })
+
+        dispatch({
+            type: LOAD_CONTENT_LIST,
+            contentList
+        });
+
+    } catch (error) {
+        console.error(error);
+    }
+
+}
+
 
 /*
     Reducer
