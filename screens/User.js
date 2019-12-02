@@ -28,7 +28,6 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
     signOutUser: () => dispatch(signOut())
-        
 })
 
 export default connect(mapState, mapDispatch)(User);

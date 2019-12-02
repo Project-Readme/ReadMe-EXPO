@@ -9,16 +9,16 @@ import styles from '../styles';
 class AllArticles extends React.Component {
     static navigationOptions = {
         header: null
-      };
+    };
 
     render() {
         const { navigate } = this.props.navigation;
         return (
-            <View >
+            <View style={styles.AllArticlesContainer} >
                 <TopBar />
-                <ScrollView>
-                { this.props.contentList.map((article) => (
-                            <TouchableOpacity
+                <ScrollView contentContainerStyle={styles.AllArticles}>
+                    {this.props.contentList.map((article) => (
+                        <TouchableOpacity
                             key={article.id}
                             onPress={
                                 () => {
@@ -26,19 +26,19 @@ class AllArticles extends React.Component {
                                     navigate('Article');
                                 }
                             }
-                            >
-                                <Card
-                                    title={article.title}
-                                    image={{uri: article.image}}
-                                />
-                            </TouchableOpacity>
-                ))
-                }
+                        >
+                            <Card
+                                title={article.title}
+                                image={{ uri: article.image }}
+                            />
+                        </TouchableOpacity>
+                    ))
+                    }
                 </ScrollView>
             </View>
         );
-      }
     }
+}
 
 const mapStateToProps = state => ({
     contentList: state.contentList
