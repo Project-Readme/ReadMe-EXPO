@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { ReduxNetworkProvider } from 'react-native-offline';
@@ -20,4 +19,3 @@ export default function App() {
     </Provider>
   );
 }
-

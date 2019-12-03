@@ -8,7 +8,7 @@ import { loadContentList } from '../store/contentList';
 import { loadMostPopular } from '../store/mostPopularList';
 import { checkInternetConnection, offlineActionCreators } from 'react-native-offline';
 
-import Card from '../components/Card'
+import Card from '../components/Card';
 import { FlatList } from 'react-native-gesture-handler';
 import ArticleCard from '../components/ArticleCard';
 
@@ -45,7 +45,7 @@ class Home extends React.Component {
 
     render() {
    const { navigate } = this.props.navigation;
-    return (
+   return (
         <View style={styles.homeContainer}>
         <TopBar />
             <Text style={{ color: '#747882', padding: 10, paddingBottom: 0, fontSize: 24, fontWeight: 'bold' }}>Most Popular</Text>
@@ -92,8 +92,8 @@ class Home extends React.Component {
 }
 
 Home.navigationOptions = {
-    header: null
-}
+    header: null,
+};
 
 const mapStateToProps = state => {
     return {
@@ -109,5 +109,4 @@ const mapDispatchToProps = dispatch => ({
     connectionChange: (isConnected) => dispatch(offlineActionCreators.connectionChange(isConnected))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps )(Home);
-
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
