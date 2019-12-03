@@ -61,7 +61,7 @@ class Home extends React.Component {
 }
 
 Home.navigationOptions = {
-    header: null,
+  header: null,
 };
 
 const mapStateToProps = state => {

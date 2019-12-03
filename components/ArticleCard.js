@@ -1,11 +1,11 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const ArticleCard = props => (
-    <Container>
-        <Image source={props.image} resizeMode="contain" />
-        <Text>{props.text}</Text>
-    </Container>
+  <Container>
+    <Image source={props.image} resizeMode="contain" />
+    <Text>{props.text}</Text>
+  </Container>
 );
 
 export default ArticleCard;
