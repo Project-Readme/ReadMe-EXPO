@@ -68,6 +68,15 @@ export const signOut = () => dispatch => {
   }
 };
 
+export const updateProfile = () => dispatch => {
+  try {
+    firebase.auth().currentUser.updateProfile({});
+  } catch (error) {
+    console.error(error);
+    return error.message;
+  }
+};
+
 /*
     Reducer
     */

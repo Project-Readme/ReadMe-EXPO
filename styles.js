@@ -3,10 +3,10 @@ import { StyleSheet } from 'react-native';
 module.exports = StyleSheet.create({
   userContainer: {
     paddingTop: 50,
-    flex: null,
+    flex: 1,
     backgroundColor: '#fff',
     alignItems: 'stretch',
-    justifyContent: 'flex-start',
+    justifyContent: 'space-evenly',
     marginLeft: 50,
     marginRight: 50,
   },
@@ -50,7 +50,7 @@ module.exports = StyleSheet.create({
     marginBottom: 32,
     fontSize: 18,
     fontWeight: '400',
-    textAlign: 'center'
+    textAlign: 'center',
   },
   errorMessage: {
     height: 72,
@@ -67,12 +67,11 @@ module.exports = StyleSheet.create({
   form: {
     marginBottom: 48,
     marginHorizontal: 30,
-
   },
   inputTitle: {
     color: '#8A8F9E',
     fontSize: 10,
-    textTransform: 'uppercase'
+    textTransform: 'uppercase',
   },
   input: {
     borderBottomColor: '#8A8F9E',
@@ -94,7 +93,7 @@ module.exports = StyleSheet.create({
     justifyContent: 'center',
   },
   AllArticlesContainer: {
-    flex: 1
+    flex: 1,
   },
   searchBarContainer: {
     margin: 10,
@@ -108,7 +107,7 @@ module.exports = StyleSheet.create({
     borderColor: 'black',
     borderWidth: 1,
     backgroundColor: 'rgba(0,0,0,0.1)',
-    padding: 4
+    padding: 4,
   },
   searchButton: {
     marginTop: 10,
