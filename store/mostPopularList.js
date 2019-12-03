@@ -37,7 +37,6 @@ export const loadMostPopular = () => async dispatch => {
 
         res2.docs.forEach(doc => {
             const data = doc.data();
-            console.log(Object.keys(data))
             mostRecentList.push({
                 id: doc.id,
                 title: data.Title,

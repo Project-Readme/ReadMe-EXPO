@@ -14,7 +14,7 @@ class LoadingScreen extends React.Component {
         checkInternetConnection().then(isConnected => {
             this.props.connectionChange(isConnected);
             if (isConnected && this.props.user) {
-                this.props.loadContentList(this.props.user);
+                this.props.loadContentList(this.props.user.email);
                 this.props.loadMostPopular();
             }
         })
