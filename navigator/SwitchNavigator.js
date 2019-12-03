@@ -20,8 +20,10 @@ const AuthStack = createStackNavigator({
   });
 
   const HomeScreen = createStackNavigator({
+    Loading,
     Home: Home,
     Article: SingleArticle,
+
   });
 
   const UserStack = createStackNavigator({
@@ -43,7 +45,6 @@ const AuthStack = createStackNavigator({
   const AuthSwitchNavigator = createSwitchNavigator(
     {
         Home: TabNavigator,
-        Loading,
         Auth: AuthStack,
     }
   )
