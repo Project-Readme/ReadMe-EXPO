@@ -1,6 +1,15 @@
 import { StyleSheet } from 'react-native';
 
 module.exports = StyleSheet.create({
+  userContainer: {
+    paddingTop: 50,
+    flex: null,
+    backgroundColor: '#fff',
+    alignItems: 'stretch',
+    justifyContent: 'flex-start',
+    marginLeft: 50,
+    marginRight: 50,
+  },
   container: {
     flex: 1,
     backgroundColor: '#fff',
@@ -35,7 +44,7 @@ module.exports = StyleSheet.create({
   },
   homeContainer: {
     flex: 1,
-    backgroundColor: 'white'
+    backgroundColor: 'white',
   },
   greeting: {
     marginBottom: 32,
@@ -47,17 +56,18 @@ module.exports = StyleSheet.create({
     height: 72,
     alignItems: 'center',
     justifyContent: 'center',
-    marginHorizontal: 30
+    marginHorizontal: 30,
   },
   error: {
     color: '#E9446A',
     fontSize: 13,
     fontWeight: '600',
-    textAlign: 'center'
+    textAlign: 'center',
   },
   form: {
     marginBottom: 48,
-    marginHorizontal: 30
+    marginHorizontal: 30,
+
   },
   inputTitle: {
     color: '#8A8F9E',
@@ -69,7 +79,7 @@ module.exports = StyleSheet.create({
     borderBottomWidth: StyleSheet.hairlineWidth,
     height: 40,
     fontSize: 15,
-    color: '#161F3D'
+    color: '#161F3D',
   },
   button: {
     marginHorizontal: 30,

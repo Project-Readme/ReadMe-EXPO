@@ -1,6 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Text, View, ScrollView, Image, TouchableOpacity, Button } from 'react-native';
+import {
+    Text,
+    View,
+    ScrollView,
+    Image,
+    TouchableOpacity,
+    Button,
+} from 'react-native';
 import TopBar from '../components/topBar';
 import Card from '../components/Card';
 import { setCurrentContent } from '../store/currentContent';
@@ -41,11 +48,12 @@ class AllArticles extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    contentList: state.contentList
+    contentList: state.contentList,
+    user: state.user.email
 });
 
 const mapDispatchToProps = dispatch => ({
-    setCurrentContent: (article) => dispatch(setCurrentContent(article))
-})
+    setCurrentContent: article => dispatch(setCurrentContent(article)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllArticles);
