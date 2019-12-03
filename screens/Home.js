@@ -34,60 +34,59 @@ class Home extends React.Component {
     componentDidMount() {
 
         checkInternetConnection().then(isConnected => {
-          this.props.connectionChange(isConnected);
-          console.log(isConnected)
-          if (isConnected && this.props.user) {
-            this.props.loadContentList(this.props.user);
-            this.props.loadMostPopular();
-          }
+            this.props.connectionChange(isConnected);
+            if (isConnected && this.props.user) {
+                this.props.loadContentList(this.props.user);
+                this.props.loadMostPopular();
+            }
         })
-      }
+    }
 
     render() {
-   const { navigate } = this.props.navigation;
-   return (
-        <View style={styles.homeContainer}>
-        <TopBar />
-            <Text style={{ color: '#747882', padding: 10, paddingBottom: 0, fontSize: 24, fontWeight: 'bold' }}>Most Popular</Text>
-            <ScrollView
-                horizontal={true}
-                style={{ paddingBottom: 20 }}
-                showsHorizontalScrollIndicator={false}
-            >
-                {this.props.mostPopularList.map((item) => (
-                <TouchableOpacity
-                key={item.id}
-                onPress={
-                    () => {
-                        this.props.setCurrentContent(item);
-                        navigate('Article');
-                    }
-                }
+        const { navigate } = this.props.navigation;
+        return (
+            <View style={styles.homeContainer}>
+                <TopBar />
+                <Text style={{ color: '#747882', padding: 10, paddingBottom: 0, fontSize: 24, fontWeight: 'bold' }}>Most Popular</Text>
+                <ScrollView
+                    horizontal={true}
+                    style={{ paddingBottom: 20 }}
+                    showsHorizontalScrollIndicator={false}
                 >
-                <Card
-                title={item.title}
-                image={{ uri: item.image }}
+                    {this.props.mostPopularList.map((item) => (
+                        <TouchableOpacity
+                            key={item.id}
+                            onPress={
+                                () => {
+                                    this.props.setCurrentContent(item);
+                                    navigate('Article');
+                                }
+                            }
+                        >
+                            <Card
+                                title={item.title}
+                                image={{ uri: item.image }}
+                            />
+                        </TouchableOpacity>
+                    ))}
+                </ScrollView>
+                <Text style={{ color: '#747882', padding: 10, paddingBottom: 0, fontSize: 24, fontWeight: 'bold' }}>Recommended</Text>
+
+                <FlatList
+                    keyExtractor={article => article.title}
+                    data={dummy}
+                    renderItem={article => {
+
+                        return (
+                            <View style={{ borderColor: 'black', borderBottomWidth: 1, paddingTop: 10, paddingBottom: 5 }}>
+                                <ArticleCard image={article.item.img} text={article.item.title} />
+                            </View>
+                        )
+                    }}
                 />
-                </TouchableOpacity>
-                ))}
-            </ScrollView>
-            <Text style={{ color: '#747882', padding: 10, paddingBottom: 0, fontSize: 24, fontWeight: 'bold' }}>Recommended</Text>
 
-            <FlatList
-                keyExtractor={article => article.title}
-                data={dummy}
-                renderItem={article => {
-
-                    return (
-                        <View style={{ borderColor: 'black', borderBottomWidth: 1, paddingTop: 10, paddingBottom: 5 }}>
-                            <ArticleCard image={article.item.img} text={article.item.title} />
-                        </View>
-                    )
-                }}
-             />
-
-        </View>
-    )
+            </View>
+        )
     }
 }
 
@@ -99,8 +98,8 @@ const mapStateToProps = state => {
     return {
         mostPopularList: state.mostPopularList,
         user: state.user.email
-        }
-    };
+    }
+};
 
 const mapDispatchToProps = dispatch => ({
     setCurrentContent: (article) => dispatch(setCurrentContent(article)),
