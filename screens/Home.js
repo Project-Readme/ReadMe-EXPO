@@ -52,6 +52,7 @@ class Home extends React.Component {
                         </TouchableOpacity>
                     ))}
                 </ScrollView>
+
                 <Text style={{ color: '#747882', padding: 10, paddingBottom: 0, fontSize: 24, fontWeight: 'bold' }}>Recent Articles</Text>
 
             </View>

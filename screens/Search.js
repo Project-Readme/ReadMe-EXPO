@@ -89,7 +89,7 @@ class Search extends React.Component {
                 <View style={styles.searchBarContainer}>
                     <Text style={{ fontSize: 24, fontWeight: 'bold', textAlign: 'center' }}>Paste article URL here!</Text>
                     <TextInput
-                        placeholder="Search"
+                        placeholder="Add"
                         style={styles.searchBar}
                         onChangeText={this.searchInputHandler}
                         ref={input => { this.textInput = input }}
