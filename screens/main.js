@@ -10,17 +10,17 @@ import { checkInternetConnection, offlineActionCreators } from 'react-native-off
 import { loadContentList } from '../store/contentList';
 import { loadMostPopular } from '../store/mostPopularList';
 
-import Home from '../screens/Home'
-import Articles from '../screens/Articles'
-import User from '../screens/User'
-import Login from '../screens/Login'
-import Signup from '../screens/Signup'
-import Loading from '../screens/Loading'
-import Search from '../screens/Search'
+import Home from './Home'
+import Articles from './Articles'
+import User from './User'
+import Login from './Login'
+import Signup from './Signup'
+import Loading from './Loading'
+import Search from './Search'
 
 import 'react-native-gesture-handler';
 import { createStackNavigator } from 'react-navigation-stack';
-import SingleArticle from '../screens/SingleArticle';
+import SingleArticle from './SingleArticle';
 
 const AuthStack = createStackNavigator({
   Login,
@@ -61,7 +61,6 @@ const SwitchNavigator = createAppContainer(AuthSwitchNavigator);
 class Main extends React.Component {
 
   componentDidMount() {
-    console.log(this.props)
 
     checkInternetConnection().then(isConnected => {
       this.props.connectionChange(isConnected);
