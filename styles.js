@@ -82,7 +82,7 @@ module.exports = StyleSheet.create({
   },
   button: {
     marginHorizontal: 30,
-    backgroundColor: '#E9446A',
+    backgroundColor: '#a82323',
     borderRadius: 4,
     height: 52,
     alignItems: 'center',
@@ -112,7 +112,7 @@ module.exports = StyleSheet.create({
   searchButton: {
     marginTop: 10,
     marginHorizontal: 30,
-    backgroundColor: '#E9446A',
+    backgroundColor: '#a82323',
     borderRadius: 8,
     height: 52,
     alignItems: 'center',
