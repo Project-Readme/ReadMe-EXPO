@@ -123,6 +123,19 @@ module.exports = StyleSheet.create({
     marginBottom: 35,
     textAlign: 'center',
     fontSize: 20,
-    fontWeight: '400',
+    fontWeight: '400'
   },
+  homeHeader: { 
+    color: '#747882', 
+    padding: 10, 
+    paddingBottom: 0, 
+    fontSize: 24, 
+    fontWeight: 'bold' 
+  }, 
+  recentBox: { 
+    borderColor: 'black', 
+    borderBottomWidth: 1, 
+    paddingTop: 10, 
+    paddingBottom: 5 
+  }
 });

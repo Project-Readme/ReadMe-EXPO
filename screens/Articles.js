@@ -45,8 +45,7 @@ class AllArticles extends React.Component {
                     onChangeText={(i) => {
                         this.searchInputHandler(i)
                     }}
-                >
-                </TextInput>
+                />
                 {this.state.searched ?
                     <ScrollView contentContainerStyle={styles.AllArticles}>
                         {this.state.searchResults.map((article) => (
@@ -85,7 +84,7 @@ class AllArticles extends React.Component {
                             </TouchableOpacity>
                         ))
                         }
-                    </ScrollView>}
+                      </ScrollView>}
             </View>
         );
     }
