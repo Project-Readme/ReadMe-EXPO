@@ -23,7 +23,6 @@ const AuthStack = createStackNavigator({
     Loading,
     Home: Home,
     Article: SingleArticle,
-
   });
 
   const UserStack = createStackNavigator({

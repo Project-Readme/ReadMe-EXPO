@@ -67,6 +67,7 @@ function Home (props) {
 
 Home.navigationOptions = {
     header: null,
+    gesturesEnabled: false,
 };
 
 const mapStateToProps = state => {
