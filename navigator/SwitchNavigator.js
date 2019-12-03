@@ -4,7 +4,7 @@ import User from '../screens/User'
 import Login from '../screens/Login'
 import Signup from '../screens/Signup'
 import Loading from '../screens/Loading'
-import Search from '../screens/Search'
+import Add from '../screens/Search'
 
 import 'react-native-gesture-handler';
 import { createStackNavigator } from 'react-navigation-stack';
@@ -23,7 +23,6 @@ const AuthStack = createStackNavigator({
     Loading,
     Home: Home,
     Article: SingleArticle,
-
   });
 
   const UserStack = createStackNavigator({
@@ -38,7 +37,7 @@ const AuthStack = createStackNavigator({
   const TabNavigator = createBottomTabNavigator({
     Home: HomeScreen,
     Articles: ArticlesStack,
-    Search,
+    Add,
     User
   });
 

@@ -22,7 +22,7 @@ class User extends React.Component {
           <TextInput style={styles.input} />
 
           <TouchableOpacity
-            style={styles.button}
+            style={styles.searchButton}
             onPress={() => {
               this.props.updateProfile();
             }}
@@ -30,7 +30,7 @@ class User extends React.Component {
             <Text style={{ fontWeight: '500' }}>Update Profile</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={styles.button}
+            style={styles.searchButton}
             onPress={() => {
               this.props.signOutUser();
               this.props.navigation.navigate('Auth');
