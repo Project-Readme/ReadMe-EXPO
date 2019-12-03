@@ -28,8 +28,8 @@ const dummy = [
         img: { uri: 'https://miro.medium.com/max/2400/1*wMjnTSs_-znQ2NRUjysK4w.png' }
     },
     {
-        title: 'How to Build a Simple Chrome Extension',
-        img: { uri: 'https://miro.medium.com/max/2957/1*HwO6wiOHiJrN1_jePQrmEA.jpeg' }
+        title: 'Easily Build Forms in React Native',
+        img: { uri: 'https://miro.medium.com/max/3264/1*OULxgHA3QB60xpOlUJg0QA.jpeg' }
     },
 ]
 
@@ -100,7 +100,9 @@ class Search extends React.Component {
                     </TouchableOpacity>
                 </View>
                 {this.state.searched ?
-                    [(this.state.added ? <Text style={styles.statusText}>Added Successfully!</Text> : <Text style={styles.statusText}>Error adding</Text>)] :
+                    [(this.state.added ?
+                        <Text key={'added'} style={styles.statusText}>Added Successfully!</Text> :
+                        <Text key={'error'} style={styles.statusText}>Error adding</Text>)] :
                     <Text style={styles.statusText}></Text>
                 }
                 <Text style={{ color: '#747882', padding: 10, paddingBottom: 0, fontSize: 24, fontWeight: 'bold' }}>Recommended</Text>
@@ -108,7 +110,6 @@ class Search extends React.Component {
                     keyExtractor={article => article.title}
                     data={dummy}
                     renderItem={article => {
-
                         return (
                             <View style={{ borderColor: 'black', borderBottomWidth: 1, paddingTop: 10, paddingBottom: 5 }}>
                                 <ArticleCard image={article.item.img} text={article.item.title} />
