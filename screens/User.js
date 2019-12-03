@@ -24,8 +24,7 @@ class User extends React.Component {
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
-              this.props.signOutUser();
-              this.props.navigation.navigate('Auth');
+              this.props.updateProfile();
             }}
           >
             <Text style={{ fontWeight: '500' }}>Update Profile</Text>
@@ -33,7 +32,7 @@ class User extends React.Component {
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
-              this.props.updateProfile();
+              this.props.signOutUser();
               this.props.navigation.navigate('Auth');
             }}
           >
