@@ -44,7 +44,7 @@ const AuthStack = createStackNavigator({
     {
         Home: TabNavigator,
         Loading,
-        Auth: AuthStack
+        Auth: AuthStack,
     }
   )
 
