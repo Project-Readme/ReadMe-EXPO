@@ -15,7 +15,7 @@ const Home = props => {
     return (
         <View style={styles.homeContainer}>
             <TopBar />
-            <Text style={{ color: '#747882', padding: 10, paddingBottom: 0, fontSize: 24, fontWeight: 'bold' }}>Most Popular</Text>
+            <Text style={styles.homeHeader}>Most Popular</Text>
             <ScrollView
                 horizontal={true}
                 style={{ paddingBottom: 20 }}
@@ -38,7 +38,19 @@ const Home = props => {
                     </TouchableOpacity>
                 ))}
             </ScrollView>
-            <Text style={{ color: '#747882', padding: 10, paddingBottom: 0, fontSize: 24, fontWeight: 'bold' }}>Recent Articles</Text>
+            <Text style={styles.homeHeader}>Recent Articles</Text>
+            {/* <FlatList
+                keyExtractor={article => article.title}
+                data={dummy}
+                renderItem={article => {
+
+                    return (
+                        <View style={styles.recentBox}>
+                            <ArticleCard image={article.item.img} text={article.item.title} />
+                        </View>
+                    )
+                }}
+             /> */}
         </View>
     )
 }

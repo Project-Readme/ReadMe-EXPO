@@ -13,13 +13,12 @@ export const loadMostPopular = () => async dispatch => {
     try {
 
         const mostPopularList = [];
-        const mostRecentList = [];
-        const res1 = await db.collection('articles')
+        const res = await db.collection('articles')
         .orderBy('Popularity', 'desc')
         .limit(5)
         .get();
 
-        res1.docs.forEach(doc => {
+        res.docs.forEach(doc => {
             const data = doc.data();
             mostPopularList.push({
                 id: doc.id,
@@ -30,28 +29,9 @@ export const loadMostPopular = () => async dispatch => {
             })
         })
 
-        const res2 = await db.collection('articles')
-        .orderBy('Created', 'desc')
-        .limit(5)
-        .get();
-
-        res2.docs.forEach(doc => {
-            const data = doc.data();
-            console.log(Object.keys(data))
-            mostRecentList.push({
-                id: doc.id,
-                title: data.Title,
-                body: data.Body,
-                head: data.Head,
-                image: data.Image,
-            })
-        })
-
-
         dispatch({
             type: GET_MOST_POPULAR,
-            mostPopularList,
-            mostRecentList
+            mostPopularList
         });
 
     } catch (error) {
