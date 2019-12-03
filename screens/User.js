@@ -3,29 +3,46 @@ import TopBar from '../components/topBar';
 import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 import { connect } from 'react-redux';
 
-import { signOut } from '../store/user';
+import { signOut, updateProfile } from '../store/user';
 import styles from '../styles';
 
-function User(props) {
-  return (
-    <View style={styles.container}>
-      <TopBar />
-      <View style={styles.userContainer}>
-        <Text>Hi {props.displayName}!</Text>
-        <TextInput style={{ backgroundColor: '#de6d7a' }} />
+class User extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <TopBar />
+        <View style={styles.userContainer}>
+          <Text style={{ textAlign: 'center', padding: 10, fontSize: 50 }}>
+            Edit Profile
+          </Text>
+          <TextInput style={styles.input} />
 
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => {
-            props.signOutUser();
-            props.navigation.navigate('Auth');
-          }}
-        >
-          <Text style={{ fontWeight: '500' }}>Logout</Text>
-        </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              this.props.signOutUser();
+              this.props.navigation.navigate('Auth');
+            }}
+          >
+            <Text style={{ fontWeight: '500' }}>Update Profile</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              this.props.updateProfile();
+              this.props.navigation.navigate('Auth');
+            }}
+          >
+            <Text style={{ fontWeight: '500' }}>Logout</Text>
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
-  );
+    );
+  }
 }
 
 const mapState = state => ({
@@ -35,6 +52,7 @@ const mapState = state => ({
 });
 
 const mapDispatch = dispatch => ({
+  updateProfile: () => dispatch(updateProfile()),
   signOutUser: () => dispatch(signOut()),
 });
 
