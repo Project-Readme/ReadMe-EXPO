@@ -66,7 +66,7 @@ function Home (props) {
 }
 
 Home.navigationOptions = {
-  header: null,
+    header: null,
 };
 
 const mapStateToProps = state => {

@@ -21,7 +21,7 @@ class Login extends React.Component {
 
         const errorMessage = await this.props.signIn(email, password);
         if (errorMessage) {
-            this.setState({errorMessage});
+            this.setState({ errorMessage });
         } else {
             this.props.navigation.navigate('Home');
         }
@@ -45,7 +45,7 @@ class Login extends React.Component {
                                 autoCapitalize="none"
                                 onChangeText={email => this.setState({ email })}
                                 value={this.state.email}
-                             />
+                            />
                         </View>
 
                         <View style={{ marginTop: 32 }}>
@@ -56,7 +56,7 @@ class Login extends React.Component {
                                 autoCapitalize="none"
                                 onChangeText={password => this.setState({ password })}
                                 value={this.state.password}
-                             />
+                            />
                         </View>
                     </View>
 
@@ -76,9 +76,9 @@ class Login extends React.Component {
             );
         } else {
             return (
-            <View style={styles.container}>
-                <Text>Please Connect To Internet to Login or Signup</Text>
-            </View>
+                <View style={styles.container}>
+                    <Text>Please Connect To Internet to Login or Signup</Text>
+                </View>
             )
         }
     }
