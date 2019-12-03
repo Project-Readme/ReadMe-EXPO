@@ -16,14 +16,13 @@ class Home extends React.Component {
     componentDidMount() {
 
         checkInternetConnection().then(isConnected => {
-          this.props.connectionChange(isConnected);
-          console.log(isConnected)
-          if (isConnected && this.props.user) {
-            this.props.loadContentList(this.props.user);
-            this.props.loadMostPopular();
-          }
+            this.props.connectionChange(isConnected);
+            if (isConnected && this.props.user) {
+                this.props.loadContentList(this.props.user);
+                this.props.loadMostPopular();
+            }
         })
-      }
+    }
 
     render() {
    const { navigate } = this.props.navigation;
@@ -89,8 +88,8 @@ const mapStateToProps = state => {
         mostPopularList: state.mostPopularList,
         mostRecentList: state.mostRecentList,
         user: state.user.email
-        }
-    };
+    }
+};
 
 const mapDispatchToProps = dispatch => ({
     setCurrentContent: (article) => dispatch(setCurrentContent(article)),
