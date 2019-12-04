@@ -20,7 +20,6 @@ const AuthStack = createStackNavigator({
   });
 
   const HomeScreen = createStackNavigator({
-    Loading,
     Home: Home,
     Article: SingleArticle,
   });
@@ -43,8 +42,12 @@ const AuthStack = createStackNavigator({
 
   const AuthSwitchNavigator = createSwitchNavigator(
     {
+        AuthLoading: Loading,
         Home: TabNavigator,
         Auth: AuthStack,
+    },
+    {
+      initialRouteName: 'AuthLoading'
     }
   )
 
