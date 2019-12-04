@@ -1,30 +1,47 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {
-    Text,
     View,
     ScrollView,
-    Image,
     TouchableOpacity,
-    Button,
-    TextInput
+    TextInput,
+    RefreshControl
 } from 'react-native';
 import TopBar from '../components/topBar';
 import Card from '../components/Card';
 import { setCurrentContent } from '../store/currentContent';
 import styles from '../styles';
+import { loadContentList } from '../store/contentList';
+import { loadMostPopular } from '../store/mostPopularList';
 
 class AllArticles extends React.Component {
     constructor() {
         super()
         this.state = {
             searched: false,
-            searchResults: []
+            searchResults: [],
+            isRefreshing: false
         }
+        this.onRefresh = this.onRefresh.bind(this)
     }
     static navigationOptions = {
         header: null
     };
+
+    onRefresh() {
+        this.setState({isRefreshing: true});
+        setTimeout( () => {
+            try {
+                this.props.loadContentList(this.props.user);
+                this.props.loadMostPopular();
+                this.setState({isRefreshing: false});
+
+            } catch (error) {
+                console.log(error)
+                this.setState({isRefreshing: false});
+            }
+        });
+      }
 
     searchInputHandler = input => {
         const results = this.props.contentList.filter(article => {
@@ -46,8 +63,12 @@ class AllArticles extends React.Component {
                         this.searchInputHandler(i)
                     }}
                 />
+
                 {this.state.searched ?
-                    <ScrollView contentContainerStyle={styles.AllArticles}>
+                    <ScrollView
+                    contentContainerStyle={styles.AllArticles}
+                    refreshControl={<RefreshControl refreshing={this.state.isRefreshing} onRefresh={this.onRefresh} />}
+                    >
                         {this.state.searchResults.map((article) => (
                             <TouchableOpacity
                                 key={article.id}
@@ -66,7 +87,10 @@ class AllArticles extends React.Component {
                         ))
                         }
                     </ScrollView>
-                    : <ScrollView contentContainerStyle={styles.AllArticles}>
+                    : <ScrollView
+                    contentContainerStyle={styles.AllArticles}
+                    refreshControl={<RefreshControl refreshing={this.state.isRefreshing} onRefresh={this.onRefresh} />}
+                    >
                         {this.props.contentList.map((article) => (
                             <TouchableOpacity
                                 key={article.id}
@@ -97,6 +121,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     setCurrentContent: article => dispatch(setCurrentContent(article)),
+    loadContentList: (user) => dispatch(loadContentList(user)),
+    loadMostPopular: () => dispatch(loadMostPopular()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllArticles);
