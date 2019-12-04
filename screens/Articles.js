@@ -13,7 +13,6 @@ import Card from '../components/Card';
 import { setCurrentContent } from '../store/currentContent';
 import { loadContentList } from '../store/contentList'
 import styles from '../styles';
-import { loadContentList } from '../store/contentList';
 import { loadMostPopular } from '../store/mostPopularList';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import db from '../database'
@@ -72,7 +71,9 @@ class AllArticles extends React.Component {
     onSwipeRight = async (article) => {
         const url = article.url.split('/').join('')
         try {
-            await db.collection('users').doc(this.props.user).collection('articles').doc(url).delete()
+            await db.collection('users').doc(this.props.user).collection('articles')
+.doc(url)
+.delete()
             this.props.loadContentList(this.props.user)
         } catch (err) {
             console.log('error', err)
@@ -141,7 +142,7 @@ class AllArticles extends React.Component {
                             </Swipeable>
                         ))
                         }
-                    </ScrollView>}
+                      </ScrollView>}
             </View>
         );
     }
