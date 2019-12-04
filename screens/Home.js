@@ -62,7 +62,6 @@ class Home extends React.Component {
                                 this.props.setCurrentContent(item);
                                 navigate('Article');
                             }
-                        }
                         >
                         <Card
                         title={item.title}
@@ -98,10 +97,6 @@ class Home extends React.Component {
             )
      }
     }
-
-Home.navigationOptions = {
-    header: null,
-};
 
 const mapStateToProps = state => {
     return {
