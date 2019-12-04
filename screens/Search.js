@@ -5,10 +5,13 @@ import styles from '../styles';
 import ArticleCard from '../components/ArticleCard';
 
 import { connect } from 'react-redux';
+
 import cheerio from 'react-native-cheerio'
 import axios from 'axios';
 import db from '../database';
+import firebase from 'firebase'
 import { loadContentList } from '../store/contentList'
+import { loadMostPopular } from '../store/mostPopularList'
 
 const dummy = [
     {
@@ -48,6 +51,8 @@ class Search extends React.Component {
     }
 
     getArticle = async () => {
+        let incriment = firebase.firestore.FieldValue.increment(1);
+
         if (this.state.input) {
             const regex = /(ftp|http|https):\/\//
             if (regex.test(this.state.input)) {
@@ -60,15 +65,36 @@ class Search extends React.Component {
                     const img = $("meta[property='og:image']").attr("content")
                     const url = this.state.input.split('/').join('')
 
-                    const ref = await db.collection('users').doc(`${this.props.user.email}`).collection('articles').doc(url)
-                    ref.set({
+                    const usersRef = await db.collection('users').doc(`${this.props.user.email}`).collection('articles').doc(url)
+
+                    usersRef.set({
                         URL: this.state.input,
                         Head: head,
                         Body: article,
                         Title: title,
-                        Image: img
+                        Image: img,
+                    })
+                    const realUrl = this.state.input
+                    const articlesRef = db.collection('articles').doc(url)
+                    const now = Date.now()
+                    articlesRef.get().then(function (doc) {
+                        if (doc.exists) {
+                            db.collection('articles').doc(url).update({ Popularity: incriment });
+                        } else {
+                            // doc.data() will be undefined in this case
+                            articlesRef.set({
+                                URL: realUrl,
+                                Head: head,
+                                Body: article,
+                                Title: title,
+                                Image: img,
+                                Popularity: 1,
+                                Created: now
+                            })
+                        }
                     })
                     this.props.loadContentList(this.props.user.email)
+                    this.props.loadMostPopular()
                     this.textInput.clear()
                     this.setState({ searched: true, added: true })
                 } catch (err) {
@@ -76,9 +102,8 @@ class Search extends React.Component {
                     this.setState({ searched: true, added: false })
                 }
             }
-            else {
-                this.setState({ searched: true, added: false })
-            }
+        } else {
+            this.setState({ searched: true, added: false })
         }
     }
 
@@ -130,7 +155,8 @@ mapStateToProps = state => {
 
 mapDispatchToProps = dispatch => {
     return {
-        loadContentList: (user) => dispatch(loadContentList(user))
+        loadContentList: (user) => dispatch(loadContentList(user)),
+        loadMostPopular: () => dispatch(loadMostPopular())
     }
 }
 
