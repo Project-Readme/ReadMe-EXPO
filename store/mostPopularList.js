@@ -15,9 +15,9 @@ export const loadMostPopular = () => async dispatch => {
         const mostPopularList = [];
         const mostRecentList = [];
         const res1 = await db.collection('articles')
-        .orderBy('Popularity', 'desc')
-        .limit(5)
-        .get();
+            .orderBy('Popularity', 'desc')
+            .limit(5)
+            .get();
 
         res1.docs.forEach(doc => {
             const data = doc.data();
@@ -31,9 +31,9 @@ export const loadMostPopular = () => async dispatch => {
         })
 
         const res2 = await db.collection('articles')
-        .orderBy('Created', 'desc')
-        .limit(5)
-        .get();
+            .orderBy('Created', 'desc')
+            .limit(5)
+            .get();
 
         res2.docs.forEach(doc => {
             const data = doc.data();
