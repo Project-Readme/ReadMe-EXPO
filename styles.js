@@ -137,5 +137,13 @@ module.exports = StyleSheet.create({
     borderBottomWidth: 1,
     paddingTop: 10,
     paddingBottom: 5
+  },
+  rightAction: {
+    backgroundColor: '#dd2c00',
+    borderRadius: 12,
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+    margin: '5%',
+    marginRight: 0
   }
 });

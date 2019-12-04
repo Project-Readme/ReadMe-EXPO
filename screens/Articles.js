@@ -4,15 +4,17 @@ import {
     Text,
     View,
     ScrollView,
-    Image,
     TouchableOpacity,
-    Button,
-    TextInput
+    TextInput,
+    Animated
 } from 'react-native';
 import TopBar from '../components/topBar';
 import Card from '../components/Card';
 import { setCurrentContent } from '../store/currentContent';
+import { loadContentList } from '../store/contentList'
 import styles from '../styles';
+import Swipeable from 'react-native-gesture-handler/Swipeable';
+import db from '../database'
 
 class AllArticles extends React.Component {
     constructor() {
@@ -31,6 +33,31 @@ class AllArticles extends React.Component {
             return article.title.toLowerCase().includes(input.toLowerCase())
         })
         this.setState({ searched: true, searchResults: results })
+    }
+
+    rightAction = (progress, dragX, article) => {
+        const scale = dragX.interpolate({
+            inputRange: [-100, 0],
+            outputRange: [1, 0],
+            extrapolate: 'clamp'
+        })
+        return (
+            <TouchableOpacity style={styles.rightAction} onPress={() => this.onSwipeRight(article)}>
+                <View >
+                    <Animated.Text style={{ fontSize: 30, color: 'white', fontWeight: 'bold', padding: 10, transform: [{ scale }] }}>Delete</Animated.Text>
+                </View>
+            </TouchableOpacity>
+        )
+    }
+
+    onSwipeRight = async (article) => {
+        const url = article.url.split('/').join('')
+        try {
+            await db.collection('users').doc(this.props.user).collection('articles').doc(url).delete()
+            this.props.loadContentList(this.props.user)
+        } catch (err) {
+            console.log('error', err)
+        }
     }
 
     render() {
@@ -68,23 +95,27 @@ class AllArticles extends React.Component {
                     </ScrollView>
                     : <ScrollView contentContainerStyle={styles.AllArticles}>
                         {this.props.contentList.map((article) => (
-                            <TouchableOpacity
+                            <Swipeable
                                 key={article.id}
-                                onPress={
-                                    () => {
-                                        this.props.setCurrentContent(article);
-                                        navigate('Article');
-                                    }
-                                }
+                                renderRightActions={(prog, drag) => this.rightAction(prog, drag, article)}
                             >
-                                <Card
-                                    title={article.title}
-                                    image={{ uri: article.image }}
-                                />
-                            </TouchableOpacity>
+                                <TouchableOpacity
+                                    onPress={
+                                        () => {
+                                            this.props.setCurrentContent(article);
+                                            navigate('Article');
+                                        }
+                                    }
+                                >
+                                    <Card
+                                        title={article.title}
+                                        image={{ uri: article.image }}
+                                    />
+                                </TouchableOpacity>
+                            </Swipeable>
                         ))
                         }
-                      </ScrollView>}
+                    </ScrollView>}
             </View>
         );
     }
@@ -97,6 +128,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     setCurrentContent: article => dispatch(setCurrentContent(article)),
+    loadContentList: (email) => dispatch(loadContentList(email))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllArticles);

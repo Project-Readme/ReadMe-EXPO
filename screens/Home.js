@@ -9,11 +9,9 @@ import Card from '../components/Card';
 import { FlatList } from 'react-native-gesture-handler';
 import ArticleCard from '../components/ArticleCard';
 
-function Home (props) {
-
-
-   const { navigate } = props.navigation;
-   return (
+function Home(props) {
+    const { navigate } = props.navigation;
+    return (
         <View style={styles.homeContainer}>
             <TopBar />
             <Text style={styles.homeHeader}>Most Popular</Text>
@@ -23,20 +21,20 @@ function Home (props) {
                 showsHorizontalScrollIndicator={false}
             >
                 {props.mostPopularList.map((item) => (
-                <TouchableOpacity
-                key={item.id}
-                onPress={
-                    () => {
-                        props.setCurrentContent(item);
-                        navigate('Article');
-                    }
-                }
-                >
-                <Card
-                title={item.title}
-                image={{ uri: item.image }}
-                />
-                </TouchableOpacity>
+                    <TouchableOpacity
+                        key={item.id}
+                        onPress={
+                            () => {
+                                props.setCurrentContent(item);
+                                navigate('Article');
+                            }
+                        }
+                    >
+                        <Card
+                            title={item.title}
+                            image={{ uri: item.image }}
+                        />
+                    </TouchableOpacity>
                 ))}
             </ScrollView>
             <Text style={styles.homeHeader}>Recent Articles</Text>
@@ -47,20 +45,20 @@ function Home (props) {
 
                     return (
                         <TouchableOpacity
-                        onPress={
-                            () => {
-                                props.setCurrentContent(article.item);
-                                navigate('Article');
+                            onPress={
+                                () => {
+                                    props.setCurrentContent(article.item);
+                                    navigate('Article');
+                                }
                             }
-                        }
                         >
-                        <View style={styles.recentBox}>
-                            <ArticleCard image={{uri: article.item.image}} text={article.item.title} />
-                        </View>
+                            <View style={styles.recentBox}>
+                                <ArticleCard image={{ uri: article.item.image }} text={article.item.title} />
+                            </View>
                         </TouchableOpacity>
                     )
                 }}
-             />
+            />
         </View>
     )
 }
