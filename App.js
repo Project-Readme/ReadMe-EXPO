@@ -9,6 +9,7 @@ import SwtichNavigator from './navigator/SwitchNavigator'
 
 const newtworkProviderProps = {children: Main, pingOnlyWhenOffline: true, pingInBackground: true, pingInterval: 5000};
 export default function App() {
+  console.ignoredYellowBox = ['Setting a timer'];
   return (
     <Provider store={store} >
       <ReduxNetworkProvider props={newtworkProviderProps}>
