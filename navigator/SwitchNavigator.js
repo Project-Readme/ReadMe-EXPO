@@ -13,7 +13,6 @@ import SingleArticle from '../screens/SingleArticle';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 
-
 const AuthStack = createStackNavigator({
     Login,
     Signup
@@ -37,7 +36,7 @@ const AuthStack = createStackNavigator({
     Home: HomeScreen,
     Articles: ArticlesStack,
     Add,
-    User
+    User: UserStack,
   });
 
   const AuthSwitchNavigator = createSwitchNavigator(
@@ -52,4 +51,3 @@ const AuthStack = createStackNavigator({
   )
 
  export default createAppContainer(AuthSwitchNavigator);
-

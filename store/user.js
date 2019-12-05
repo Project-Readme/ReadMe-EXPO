@@ -68,9 +68,41 @@ export const signOut = () => dispatch => {
   }
 };
 
-export const updateProfile = () => dispatch => {
+export const updateProfile = (email, displayName) => dispatch => {
+  // console.log('email =====>', email);
+  // console.log('displayName =====>', displayName);
   try {
-    firebase.auth().currentUser.updateProfile({});
+    user = firebase.auth().currentUser;
+    user
+      .updateProfile({
+        displayName,
+      })
+      .then(function() {
+        console.log('update successful');
+      })
+      .catch(function(error) {
+        console.log('error ===>', error);
+        return error.message;
+      });
+
+    user
+      .updateEmail(email)
+      .then(function() {
+        console.log('update successful');
+      })
+      .catch(function(error) {
+        console.log('error ===>', error);
+        return error.message;
+      });
+    updatedUser = firebase.auth().currentUser;
+    dispatch({
+      type: LOGIN,
+      user: {
+        displayName: updatedUser.displayName,
+        email: updatedUser.email,
+        uid: updatedUser.uid,
+      },
+    });
   } catch (error) {
     console.error(error);
     return error.message;
