@@ -15,7 +15,8 @@ import { loadContentList } from '../store/contentList'
 import styles from '../styles';
 import { loadMostPopular } from '../store/mostPopularList';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
-import db from '../database'
+import db from '../database';
+import { checkInternetConnection, offlineActionCreators } from 'react-native-offline';
 
 class AllArticles extends React.Component {
     constructor() {
@@ -35,8 +36,13 @@ class AllArticles extends React.Component {
         this.setState({isRefreshing: true});
         setTimeout( () => {
             try {
-                this.props.loadContentList(this.props.user);
-                this.props.loadMostPopular();
+                checkInternetConnection().then(isConnected => {
+                    this.props.connectionChange(isConnected);
+                    if (isConnected && this.props.user.email) {
+                        this.props.loadContentList(this.props.user.email);
+                        this.props.loadMostPopular();
+                    }
+                })
                 this.setState({isRefreshing: false});
 
             } catch (error) {
@@ -156,7 +162,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     setCurrentContent: article => dispatch(setCurrentContent(article)),
     loadMostPopular: () => dispatch(loadMostPopular()),
-    loadContentList: (email) => dispatch(loadContentList(email))
+    loadContentList: (email) => dispatch(loadContentList(email)),
+    connectionChange: (isConnected) => dispatch(offlineActionCreators.connectionChange(isConnected))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllArticles);

@@ -3,6 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, FlatList } from 'react-native'
 import TopBar from '../components/topBar';
 import styles from '../styles';
 import ArticleCard from '../components/ArticleCard';
+import Animation from 'lottie-react-native';
 
 import { connect } from 'react-redux';
 
@@ -45,6 +46,19 @@ class Search extends React.Component {
             added: false
         }
     }
+    // componentDidMount() {
+    //     this.initAnimation()
+    // }
+
+    // initAnimation() {
+    //     if (!this.animation) {
+    //         setTimeout(() => {
+    //             this.initAnimation();
+    //         }, 100);
+    //     } else {
+    //         this.animation.play();
+    //     }
+    // }
 
     searchInputHandler = input => {
         this.setState({ input })
@@ -62,10 +76,11 @@ class Search extends React.Component {
                     const title = $('title').text()
                     const head = `<head>${$('head').html()}<head>`
                     const article = `<article>${$('article').html()}</article>`
-                    const img = $("meta[property='og:image']").attr("content")
+                    const img = $("meta[property='og:image']").attr('content')
                     const url = this.state.input.split('/').join('')
 
-                    const usersRef = await db.collection('users').doc(`${this.props.user.email}`).collection('articles').doc(url)
+                    const usersRef = await db.collection('users').doc(`${this.props.user.email}`).collection('articles')
+.doc(url)
 
                     usersRef.set({
                         URL: this.state.input,
@@ -108,9 +123,10 @@ class Search extends React.Component {
     }
 
     render() {
+        console.log(this.animation)
         return (
             <View>
-                <TopBar></TopBar>
+                <TopBar />
                 <View style={styles.searchBarContainer}>
                     <Text style={{ fontSize: 24, fontWeight: 'bold', textAlign: 'center' }}>Paste article URL here!</Text>
                     <TextInput
@@ -118,17 +134,25 @@ class Search extends React.Component {
                         style={styles.searchBar}
                         onChangeText={this.searchInputHandler}
                         ref={input => { this.textInput = input }}
-                    >
-                    </TextInput>
+                     />
                     <TouchableOpacity style={styles.searchButton} onPress={this.getArticle}>
                         <Text style={{ color: '#FFF', fontWeight: '500', fontSize: 18 }}>Add</Text>
                     </TouchableOpacity>
                 </View>
                 {this.state.searched ?
                     [(this.state.added ?
-                        <Text key={'added'} style={styles.statusText}>Added Successfully!</Text> :
-                        <Text key={'error'} style={styles.statusText}>Error adding</Text>)] :
-                    <Text style={styles.statusText}></Text>
+                        <Animation
+                        ref={ animation => {
+                            this.animation = animation;
+                          }}
+                        style={{
+                          width: 90,
+                          height: 90,
+                        }}
+                        source={require('../assets/book.json')}
+                        /> :
+                        <Text key="error" style={styles.statusText}>Error adding</Text>)] :
+                    <Text style={styles.statusText} />
                 }
                 <Text style={{ color: '#747882', padding: 10, paddingBottom: 0, fontSize: 24, fontWeight: 'bold' }}>Recommended</Text>
                 <FlatList
