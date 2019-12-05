@@ -45,53 +45,53 @@ class Home extends React.Component {
                     <TopBar />
                     <ScrollView
                     refreshControl={
-                        <RefreshControl refreshing={this.state.isRefreshing} onRefresh={this.onRefresh}  />
+                        <RefreshControl refreshing={this.state.isRefreshing} onRefresh={this.onRefresh} />
                     }
                     >
-                    <Text style={styles.homeHeader}>Most Popular</Text>
-                    <ScrollView
-                        horizontal={true}
-                        style={{ paddingBottom: 20 }}
-                        showsHorizontalScrollIndicator={false}
-                    >
-                        {this.props.mostPopularList.map((item) => (
-                        <TouchableOpacity
-                        key={item.id}
-                        onPress={
-                            () => {
-                                this.props.setCurrentContent(item);
-                                navigate('Article');
-                            }
+                        <Text style={styles.homeHeader}>Most Popular</Text>
+                        <ScrollView
+                            horizontal={true}
+                            style={{ paddingBottom: 20 }}
+                            showsHorizontalScrollIndicator={false}
                         >
-                        <Card
-                        title={item.title}
-                        image={{ uri: item.image }}
-                        />
-                        </TouchableOpacity>
-                        ))}
-                    </ScrollView>
-                    <Text style={styles.homeHeader}>Recent Articles</Text>
-                    <FlatList
-                        keyExtractor={article => article.title}
-                        data={this.props.mostRecentList}
-                        renderItem={article => {
+                            {this.props.mostPopularList.map((item) => (
+                            <TouchableOpacity
+                            key={item.id}
+                            onPress={
+                                () => {
+                                    this.props.setCurrentContent(item);
+                                    navigate('Article');
+                                }}
+                            >
+                                <Card
+                                title={item.title}
+                                image={{ uri: item.image }}
+                                />
+                            </TouchableOpacity>
+                            ))}
+                        </ScrollView>
+                        <Text style={styles.homeHeader}>Recent Articles</Text>
+                        <FlatList
+                            keyExtractor={article => article.title}
+                            data={this.props.mostRecentList}
+                            renderItem={article => {
 
-                            return (
-                                <TouchableOpacity
-                                onPress={
-                                    () => {
-                                        this.props.setCurrentContent(article.item);
-                                        navigate('Article');
+                                return (
+                                    <TouchableOpacity
+                                    onPress={
+                                        () => {
+                                            this.props.setCurrentContent(article.item);
+                                            navigate('Article');
+                                        }
                                     }
-                                }
-                                >
-                                <View style={styles.recentBox}>
-                                    <ArticleCard image={{uri: article.item.image}} text={article.item.title} />
-                                </View>
-                                </TouchableOpacity>
-                            )
-                        }}
-                    />
+                                    >
+                                    <View style={styles.recentBox}>
+                                        <ArticleCard image={{uri: article.item.image}} text={article.item.title} />
+                                    </View>
+                                    </TouchableOpacity>
+                                )
+                            }}
+                        />
                     </ScrollView>
                 </View>
             )
