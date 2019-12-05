@@ -44,7 +44,7 @@ const ArticlesStack = createStackNavigator({
 const TabNavigator = createBottomTabNavigator({
   Home: HomeScreen,
   Articles: ArticlesStack,
-  Search,
+  Add: Search,
   User
 });
 

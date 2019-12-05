@@ -59,7 +59,7 @@ module.exports = StyleSheet.create({
     marginHorizontal: 30,
   },
   error: {
-    color: '#E9446A',
+    color: '#C2765B',
     fontSize: 13,
     fontWeight: '600',
     textAlign: 'center',
@@ -69,7 +69,7 @@ module.exports = StyleSheet.create({
     marginHorizontal: 30,
   },
   inputTitle: {
-    color: '#8A8F9E',
+    color: '#1F1A21',
     fontSize: 10,
     textTransform: 'uppercase',
   },
@@ -82,7 +82,7 @@ module.exports = StyleSheet.create({
   },
   button: {
     marginHorizontal: 30,
-    backgroundColor: '#E9446A',
+    backgroundColor: '#C2765B',
     borderRadius: 4,
     height: 52,
     alignItems: 'center',
@@ -106,13 +106,13 @@ module.exports = StyleSheet.create({
     borderRadius: 12,
     borderColor: 'black',
     borderWidth: 1,
-    backgroundColor: 'rgba(0,0,0,0.1)',
+    backgroundColor: '#F0EEED',
     padding: 4,
   },
   searchButton: {
     marginTop: 10,
     marginHorizontal: 30,
-    backgroundColor: '#E9446A',
+    backgroundColor: '#C2765B',
     borderRadius: 8,
     height: 52,
     alignItems: 'center',
@@ -123,6 +123,27 @@ module.exports = StyleSheet.create({
     marginBottom: 35,
     textAlign: 'center',
     fontSize: 20,
-    fontWeight: '400',
+    fontWeight: '400'
   },
+  homeHeader: {
+    color: '#747882',
+    padding: 10,
+    paddingBottom: 0,
+    fontSize: 24,
+    fontWeight: 'bold'
+  },
+  recentBox: {
+    borderColor: 'black',
+    borderBottomWidth: 1,
+    paddingTop: 10,
+    paddingBottom: 5
+  },
+  rightAction: {
+    backgroundColor: '#dd2c00',
+    borderRadius: 12,
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+    margin: '5%',
+    marginRight: 0
+  }
 });

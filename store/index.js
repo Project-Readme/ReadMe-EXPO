@@ -8,6 +8,7 @@ import {reducer as network } from 'react-native-offline';
 import currentContentReducer from './currentContent';
 import contentListReducer from './contentList';
 import mostPopularReducer from './mostPopularList';
+import mostRecentReducer from './mostRecentList';
 import userReducer from './user';
 
 const logger = createLogger();
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
     currentContent: currentContentReducer,
     contentList: contentListReducer,
     mostPopularList: mostPopularReducer,
+    mostRecentList: mostRecentReducer,
     user: userReducer,
     network,
 });

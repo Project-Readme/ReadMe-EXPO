@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { signOut, updateProfile } from '../store/user';
 import styles from '../styles';
 
+
 function User(props) {
   const [email, updateEmail] = useState(props.user.email);
   const [displayName, updateDisplayName] = useState(props.user.displayName);
@@ -33,6 +34,7 @@ function User(props) {
             placeholder={props.user.email}
             onChangeText={text => updateEmail(text)}
           />
+
         </View>
 
         <TouchableOpacity

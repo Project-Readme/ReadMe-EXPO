@@ -1,81 +1,115 @@
 import React from 'react';
-import { Text, View, ScrollView, TouchableOpacity } from 'react-native';
+import { Text, View, ScrollView, TouchableOpacity, RefreshControl } from 'react-native';
 import TopBar from '../components/topBar';
 import styles from '../styles';
 import { connect } from 'react-redux';
 import { setCurrentContent } from '../store/currentContent';
-import { loadContentList } from '../store/contentList';
 import { loadMostPopular } from '../store/mostPopularList';
-import { checkInternetConnection, offlineActionCreators } from 'react-native-offline';
+import { loadContentList } from '../store/contentList';
 
 import Card from '../components/Card';
 import { FlatList } from 'react-native-gesture-handler';
 import ArticleCard from '../components/ArticleCard';
 
 class Home extends React.Component {
-    componentDidMount() {
+    constructor() {
+        super();
+        this.state = {
+            isRefreshing: false
+        }
+        this.onRefresh = this.onRefresh.bind(this)
+    }
+    static navigationOptions = {
+        header: null
+    };
 
-        checkInternetConnection().then(isConnected => {
-            this.props.connectionChange(isConnected);
-            if (isConnected && this.props.user) {
+    onRefresh() {
+        this.setState({isRefreshing: true});
+        setTimeout( () => {
+            try {
                 this.props.loadContentList(this.props.user);
                 this.props.loadMostPopular();
+                this.setState({isRefreshing: false});
+
+            } catch (error) {
+                console.log(error)
+                this.setState({isRefreshing: false});
             }
-        })
-    }
+        });
+      }
 
     render() {
         const { navigate } = this.props.navigation;
         return (
-            <View style={styles.homeContainer}>
-                <TopBar />
-                <Text style={{ color: '#747882', padding: 10, paddingBottom: 0, fontSize: 24, fontWeight: 'bold' }}>Most Popular</Text>
-                <ScrollView
-                    horizontal={true}
-                    style={{ paddingBottom: 20 }}
-                    showsHorizontalScrollIndicator={false}
-                >
-                    {this.props.mostPopularList.map((item) => (
+                <View style={styles.homeContainer}>
+                    <TopBar />
+                    <ScrollView
+                    refreshControl={
+                        <RefreshControl refreshing={this.state.isRefreshing} onRefresh={this.onRefresh}  />
+                    }
+                    >
+                    <Text style={styles.homeHeader}>Most Popular</Text>
+                    <ScrollView
+                        horizontal={true}
+                        style={{ paddingBottom: 20 }}
+                        showsHorizontalScrollIndicator={false}
+                    >
+                        {this.props.mostPopularList.map((item) => (
                         <TouchableOpacity
-                            key={item.id}
-                            onPress={
-                                () => {
-                                    this.props.setCurrentContent(item);
-                                    navigate('Article');
-                                }
+                        key={item.id}
+                        onPress={
+                            () => {
+                                this.props.setCurrentContent(item);
+                                navigate('Article');
                             }
                         >
-                            <Card
-                                title={item.title}
-                                image={{ uri: item.image }}
-                            />
+                        <Card
+                        title={item.title}
+                        image={{ uri: item.image }}
+                        />
                         </TouchableOpacity>
-                    ))}
-                </ScrollView>
+                        ))}
+                    </ScrollView>
+                    <Text style={styles.homeHeader}>Recent Articles</Text>
+                    <FlatList
+                        keyExtractor={article => article.title}
+                        data={this.props.mostRecentList}
+                        renderItem={article => {
 
-                <Text style={{ color: '#747882', padding: 10, paddingBottom: 0, fontSize: 24, fontWeight: 'bold' }}>Recent Articles</Text>
-
-            </View>
-        )
+                            return (
+                                <TouchableOpacity
+                                onPress={
+                                    () => {
+                                        this.props.setCurrentContent(article.item);
+                                        navigate('Article');
+                                    }
+                                }
+                                >
+                                <View style={styles.recentBox}>
+                                    <ArticleCard image={{uri: article.item.image}} text={article.item.title} />
+                                </View>
+                                </TouchableOpacity>
+                            )
+                        }}
+                    />
+                    </ScrollView>
+                </View>
+            )
+     }
     }
-}
-
-Home.navigationOptions = {
-  header: null,
-};
 
 const mapStateToProps = state => {
     return {
         mostPopularList: state.mostPopularList,
+        mostRecentList: state.mostRecentList,
         user: state.user.email
     }
 };
 
 const mapDispatchToProps = dispatch => ({
     setCurrentContent: (article) => dispatch(setCurrentContent(article)),
-    loadContentList: (user) => dispatch(loadContentList(user)),
     loadMostPopular: () => dispatch(loadMostPopular()),
-    connectionChange: (isConnected) => dispatch(offlineActionCreators.connectionChange(isConnected))
+    loadContentList: (user) => dispatch(loadContentList(user)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
