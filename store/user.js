@@ -81,7 +81,6 @@ export const updateProfile = (email, displayName) => dispatch => {
         console.log('update successful');
       })
       .catch(function(error) {
-        console.log('error ===>', error);
         return error.message;
       });
 
