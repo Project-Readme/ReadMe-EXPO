@@ -24,6 +24,7 @@ module.exports = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'flex-start',
     alignItems: 'center',
+    height: 95
   },
   readingContainer: {
     flex: 11,
@@ -119,16 +120,16 @@ module.exports = StyleSheet.create({
     justifyContent: 'center',
   },
   statusText: {
-    marginTop: 20,
-    marginBottom: 35,
+    marginLeft: 10,
     textAlign: 'center',
-    fontSize: 20,
-    fontWeight: '400'
+    fontSize: 24,
+    fontWeight: '600'
   },
   homeHeader: {
     color: '#747882',
     padding: 10,
     paddingBottom: 0,
+    marginBottom: 2,
     fontSize: 24,
     fontWeight: 'bold'
   },
@@ -147,10 +148,10 @@ module.exports = StyleSheet.create({
     marginRight: 0
   },
   animation: {
-    borderRadius: 4,
-    marginHorizontal: 30,
-    height: 70,
-    alignItems: 'center',
+    flexDirection: 'row',
     justifyContent: 'center',
+    alignItems: 'center',
+    height: 60,
+    width: '100%'
   }
 });

@@ -14,12 +14,13 @@ export default class TopBar extends React.Component {
       <View style={styles.topBar}>
         <View>
           <Animation
-            ref={ animation => {
-                this.animation = animation;
-              }}
+            ref={animation => {
+              this.animation = animation;
+            }}
             style={{
               width: 90,
               height: 90,
+              marginTop: 2
             }}
             loop={true}
             source={require('../assets/book.json')}

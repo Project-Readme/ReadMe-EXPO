@@ -36,25 +36,6 @@ const ArticlesStack = createStackNavigator({
   Article: SingleArticle,
 });
 
-// const TabNavigator = createBottomTabNavigator({
-//   Home: {
-//     screen: HomeScreen,
-//     navigationOptions: {
-//       tabBarLabel: ({ focused, tintColor: color }) => (
-//         <SimpleLineIcons
-//           name="home"
-//           size={35}
-//           color="#a82323"
-//           style={{ justifyContent: 'center' }}
-//         />
-//       ),
-//     },
-//   },
-//   Articles: ArticlesStack,
-//   Add,
-//   User: UserStack,
-// });
-
 const TabNavigator = createBottomTabNavigator(
   {
     Home: { screen: HomeScreen },
@@ -84,8 +65,9 @@ const TabNavigator = createBottomTabNavigator(
         return (
           <IconComponent
             name={iconName}
-            size={27}
+            size={24}
             color={focused ? '#a82323' : 'gray'}
+            style={{ marginTop: 10 }}
           />
         );
       },

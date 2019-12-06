@@ -6,7 +6,7 @@ import styles from '../styles';
 
 
 const FadeAnimation = props => {
-    const [fadeAnim] =  useState(new Animated.Value(1));
+    const [fadeAnim] = useState(new Animated.Value(1));
     React.useEffect(() => {
         Animated.timing(
             fadeAnim,
@@ -19,9 +19,9 @@ const FadeAnimation = props => {
 
     return (
         <Animated.View
-        style= {{
-            opacity: fadeAnim,
-        }}
+            style={{
+                opacity: fadeAnim,
+            }}
         >
             {props.children}
         </Animated.View>

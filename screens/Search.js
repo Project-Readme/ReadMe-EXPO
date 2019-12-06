@@ -72,7 +72,7 @@ class Search extends React.Component {
                     const url = this.state.input.split('/').join('')
 
                     const usersRef = await db.collection('users').doc(`${this.props.user.email}`).collection('articles')
-.doc(url)
+                        .doc(url)
 
                     usersRef.set({
                         URL: this.state.input,
@@ -103,7 +103,7 @@ class Search extends React.Component {
                     this.props.loadContentList(this.props.user.email)
                     this.props.loadMostPopular()
                     this.textInput.clear()
-                    this.setState({ searched: true, added: true })
+                    this.setState({ searched: true, added: true, input: '' })
                 } catch (err) {
                     console.error(err)
                     this.setState({ searched: true, added: false })
@@ -112,6 +112,10 @@ class Search extends React.Component {
         } else {
             this.setState({ searched: true, added: false })
         }
+    }
+
+    resetSearch() {
+        setTimeout(() => this.setState({ searched: false, added: false }), 3100)
     }
 
     render() {
@@ -127,24 +131,25 @@ class Search extends React.Component {
                         style={styles.searchBar}
                         onChangeText={this.searchInputHandler}
                         ref={input => { this.textInput = input }}
-                     />
-                    <TouchableOpacity style={styles.searchButton} onPress={this.getArticle}>
+                    />
+                    <TouchableOpacity style={styles.searchButton} onPress={() => {
+                        this.getArticle()
+                        this.resetSearch()
+                    }}>
                         <Text style={{ color: '#FFF', fontWeight: '500', fontSize: 18 }}>Add</Text>
                     </TouchableOpacity>
                 </View>
                 {this.state.searched ?
                     [(this.state.added ?
-                        <FadingAnimation key = "added" >
+                        <FadingAnimation key="added">
                             <Success />
-                            <Text key="add" style={styles.statusText}>Successfully added!</Text>
                         </FadingAnimation>
                         :
-                        <FadingAnimation key = "added" >
+                        <FadingAnimation key="added" style={{ height: 70, }}>
                             <Failed />
-                            <Text key="add" style={styles.statusText}>Error Adding!</Text>
                         </FadingAnimation>
-                        )] :
-                    <Text style={styles.statusText} />
+                    )] :
+                    <Text style={styles.animation} />
                 }
                 <Text style={{ color: '#747882', padding: 10, paddingBottom: 0, fontSize: 24, fontWeight: 'bold' }}>Recommended</Text>
                 <FlatList
