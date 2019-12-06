@@ -22,6 +22,11 @@ const AuthStack = createStackNavigator({
   Signup,
 });
 
+const AddStack = createStackNavigator({
+  Add,
+  Article: SingleArticle,
+});
+
 const HomeScreen = createStackNavigator({
   Home: Home,
   Article: SingleArticle,
@@ -36,30 +41,11 @@ const ArticlesStack = createStackNavigator({
   Article: SingleArticle,
 });
 
-// const TabNavigator = createBottomTabNavigator({
-//   Home: {
-//     screen: HomeScreen,
-//     navigationOptions: {
-//       tabBarLabel: ({ focused, tintColor: color }) => (
-//         <SimpleLineIcons
-//           name="home"
-//           size={35}
-//           color="#a82323"
-//           style={{ justifyContent: 'center' }}
-//         />
-//       ),
-//     },
-//   },
-//   Articles: ArticlesStack,
-//   Add,
-//   User: UserStack,
-// });
-
 const TabNavigator = createBottomTabNavigator(
   {
     Home: { screen: HomeScreen },
     Articles: { screen: ArticlesStack },
-    Add,
+    Add: AddStack,
     User: { screen: UserStack },
   },
   {

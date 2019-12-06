@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import { setCurrentContent } from '../store/currentContent';
 import { loadMostPopular } from '../store/mostPopularList';
 import { loadContentList } from '../store/contentList';
-import { checkInternetConnection, offlineActionCreators } from 'react-native-offline';
 
 import Card from '../components/Card';
 import { FlatList } from 'react-native-gesture-handler';
@@ -111,7 +110,6 @@ const mapDispatchToProps = dispatch => ({
     setCurrentContent: (article) => dispatch(setCurrentContent(article)),
     loadMostPopular: () => dispatch(loadMostPopular()),
     loadContentList: (user) => dispatch(loadContentList(user)),
-    connectionChange: (isConnected) => dispatch(offlineActionCreators.connectionChange(isConnected))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
