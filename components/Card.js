@@ -2,16 +2,16 @@ import React from "react";
 import styled from "styled-components";
 
 const Card = props => {
-    return (
-        <Container style={{ elevation: 10 }}>
-            <Cover>
-                <Image source={props.image} />
-            </Cover>
-            <Content>
-                <Caption>{props.title}</Caption>
-            </Content>
-        </Container>
-    )
+  return (
+    <Container style={{ elevation: 10 }}>
+      <Cover>
+        <Image source={props.image} />
+      </Cover>
+      <Content>
+        <Caption>{props.title}</Caption>
+      </Content>
+    </Container>
+  )
 };
 
 export default Card;
@@ -35,7 +35,7 @@ const Container = styled.View`
   height: 280px;
   border-radius: 14px;
   margin: 10px 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
 `;
 
 const Cover = styled.View`
