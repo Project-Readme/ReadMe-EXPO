@@ -28,13 +28,8 @@ class Home extends React.Component {
         this.setState({isRefreshing: true});
         setTimeout( () => {
             try {
-                checkInternetConnection().then(isConnected => {
-                    this.props.connectionChange(isConnected);
-                    if (isConnected && this.props.user.email) {
-                        this.props.loadContentList(this.props.user.email);
-                        this.props.loadMostPopular();
-                    }
-                })
+                this.props.loadContentList(this.props.user.email);
+                this.props.loadMostPopular();
                 this.setState({isRefreshing: false});
 
             } catch (error) {
