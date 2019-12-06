@@ -73,7 +73,12 @@ class RegisterScreen extends React.Component {
                     <Text style={{ color: '#FFF', fontWeight: '500' }}>Sign up</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={{ alignSelf: 'center', marginTop: 32 }}>
+                <TouchableOpacity
+                style={{ alignSelf: 'center', marginTop: 32 }}
+                onPress={
+                    () => this.props.navigation.navigate('Login')
+                }
+                >
                     <Text style={{ color: '#414959', fontSize: 13 }}>
                         Already have an account? <Text style={{ fontWeight: '500', color: '#E9446A' }}>Login</Text>
                     </Text>

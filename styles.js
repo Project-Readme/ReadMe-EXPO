@@ -145,5 +145,12 @@ module.exports = StyleSheet.create({
     alignItems: 'flex-end',
     margin: '5%',
     marginRight: 0
+  },
+  animation: {
+    borderRadius: 4,
+    marginHorizontal: 30,
+    height: 70,
+    alignItems: 'center',
+    justifyContent: 'center',
   }
 });

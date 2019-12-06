@@ -12,10 +12,6 @@ export default class TopBar extends React.Component {
   render() {
     return (
       <View style={styles.topBar}>
-        {/* <Image
-          style={{ marginTop: 10, marginRight: 10, width: 50, height: 50 }}
-          source={require('../assets/icon.png')}
-        /> */}
         <View>
           <Animation
             ref={ animation => {

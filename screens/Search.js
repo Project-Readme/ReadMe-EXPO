@@ -3,6 +3,9 @@ import { View, Text, TextInput, TouchableOpacity, FlatList } from 'react-native'
 import TopBar from '../components/topBar';
 import styles from '../styles';
 import ArticleCard from '../components/ArticleCard';
+import Success from '../components/SuccessAnim';
+import FadingAnimation from '../components/FadingAnimation';
+import Failed from '../components/FailedSearchAnim';
 
 import { connect } from 'react-redux';
 
@@ -42,7 +45,7 @@ class Search extends React.Component {
         this.state = {
             input: '',
             searched: false,
-            added: false
+            added: false,
         }
     }
 
@@ -62,10 +65,14 @@ class Search extends React.Component {
                     const title = $('title').text()
                     const head = `<head>${$('head').html()}<head>`
                     const article = `<article>${$('article').html()}</article>`
-                    const img = $("meta[property='og:image']").attr("content")
+                    let img = $("meta[property='og:image']").attr('content')
+                    if (!img) {
+                        img = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw_35AO4At-OgU5XSRRxpHcw8mM4sPrq4Y11t2tdLCJh1A1JEQBQ&s'
+                    }
                     const url = this.state.input.split('/').join('')
 
-                    const usersRef = await db.collection('users').doc(`${this.props.user.email}`).collection('articles').doc(url)
+                    const usersRef = await db.collection('users').doc(`${this.props.user.email}`).collection('articles')
+.doc(url)
 
                     usersRef.set({
                         URL: this.state.input,
@@ -108,27 +115,36 @@ class Search extends React.Component {
     }
 
     render() {
+        const addedAnim = '../assets/added.json';
         return (
             <View>
-                <TopBar></TopBar>
+                <TopBar />
                 <View style={styles.searchBarContainer}>
                     <Text style={{ fontSize: 24, fontWeight: 'bold', textAlign: 'center' }}>Paste article URL here!</Text>
+
                     <TextInput
                         placeholder="Add"
                         style={styles.searchBar}
                         onChangeText={this.searchInputHandler}
                         ref={input => { this.textInput = input }}
-                    >
-                    </TextInput>
+                     />
                     <TouchableOpacity style={styles.searchButton} onPress={this.getArticle}>
                         <Text style={{ color: '#FFF', fontWeight: '500', fontSize: 18 }}>Add</Text>
                     </TouchableOpacity>
                 </View>
                 {this.state.searched ?
                     [(this.state.added ?
-                        <Text key={'added'} style={styles.statusText}>Added Successfully!</Text> :
-                        <Text key={'error'} style={styles.statusText}>Error adding</Text>)] :
-                    <Text style={styles.statusText}></Text>
+                        <FadingAnimation key = "added" >
+                            <Success />
+                            <Text key="add" style={styles.statusText}>Successfully added!</Text>
+                        </FadingAnimation>
+                        :
+                        <FadingAnimation key = "added" >
+                            <Failed />
+                            <Text key="add" style={styles.statusText}>Error Adding!</Text>
+                        </FadingAnimation>
+                        )] :
+                    <Text style={styles.statusText} />
                 }
                 <Text style={{ color: '#747882', padding: 10, paddingBottom: 0, fontSize: 24, fontWeight: 'bold' }}>Recommended</Text>
                 <FlatList
@@ -147,13 +163,13 @@ class Search extends React.Component {
     }
 }
 
-mapStateToProps = state => {
+const mapStateToProps = state => {
     return {
         user: state.user
     }
 }
 
-mapDispatchToProps = dispatch => {
+const mapDispatchToProps = dispatch => {
     return {
         loadContentList: (user) => dispatch(loadContentList(user)),
         loadMostPopular: () => dispatch(loadMostPopular())
