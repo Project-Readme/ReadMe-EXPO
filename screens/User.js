@@ -44,7 +44,7 @@ function User(props) {
             props.navigation.navigate('Auth');
           }}
         >
-          <Text style={{ fontWeight: '500' }}>Update Profile</Text>
+          <Text style={{ fontWeight: '500', color: 'white' }}>Update Profile</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
@@ -53,7 +53,7 @@ function User(props) {
             props.navigation.navigate('Auth');
           }}
         >
-          <Text style={{ fontWeight: '500' }}>Logout</Text>
+          <Text style={{ fontWeight: '500', color: 'white' }}>Logout</Text>
         </TouchableOpacity>
       </View>
     </View>

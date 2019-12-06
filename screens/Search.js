@@ -9,35 +9,37 @@ import Failed from '../components/FailedSearchAnim';
 
 import { connect } from 'react-redux';
 
-import cheerio from 'react-native-cheerio'
+import cheerio from 'react-native-cheerio';
 import axios from 'axios';
 import db from '../database';
-import firebase from 'firebase'
-import { loadContentList } from '../store/contentList'
-import { loadMostPopular } from '../store/mostPopularList'
+import firebase from 'firebase';
+import { loadContentList } from '../store/contentList';
+import { loadMostPopular } from '../store/mostPopularList';
+import { loadRecommended } from '../store/recommendedList';
+import { setCurrentContent } from '../store/currentContent';
 
-const dummy = [
-    {
-        title: 'How to Build a Simple Chrome Extension in Vanilla JavaScript',
-        img: { uri: 'https://miro.medium.com/max/2957/1*HwO6wiOHiJrN1_jePQrmEA.jpeg' }
-    },
-    {
-        title: 'How to Perform Web-Scraping using Node.js',
-        img: { uri: 'https://miro.medium.com/max/4592/1*tBBX7RGFkadc_yiShZLDCQ.jpeg' }
-    },
-    {
-        title: 'You Don’t Understand Bitcoin Because You Think Money Is Real',
-        img: { uri: 'https://miro.medium.com/max/3887/1*1DQEeByasuoteYxoySd5SA.jpeg' }
-    },
-    {
-        title: 'The Real Cost of Phone Addiction',
-        img: { uri: 'https://miro.medium.com/max/2400/1*wMjnTSs_-znQ2NRUjysK4w.png' }
-    },
-    {
-        title: 'Easily Build Forms in React Native',
-        img: { uri: 'https://miro.medium.com/max/3264/1*OULxgHA3QB60xpOlUJg0QA.jpeg' }
-    },
-]
+// const dummy = [
+//     {
+//         title: 'How to Build a Simple Chrome Extension in Vanilla JavaScript',
+//         img: { uri: 'https://miro.medium.com/max/2957/1*HwO6wiOHiJrN1_jePQrmEA.jpeg' }
+//     },
+//     {
+//         title: 'How to Perform Web-Scraping using Node.js',
+//         img: { uri: 'https://miro.medium.com/max/4592/1*tBBX7RGFkadc_yiShZLDCQ.jpeg' }
+//     },
+//     {
+//         title: 'You Don’t Understand Bitcoin Because You Think Money Is Real',
+//         img: { uri: 'https://miro.medium.com/max/3887/1*1DQEeByasuoteYxoySd5SA.jpeg' }
+//     },
+//     {
+//         title: 'The Real Cost of Phone Addiction',
+//         img: { uri: 'https://miro.medium.com/max/2400/1*wMjnTSs_-znQ2NRUjysK4w.png' }
+//     },
+//     {
+//         title: 'Easily Build Forms in React Native',
+//         img: { uri: 'https://miro.medium.com/max/3264/1*OULxgHA3QB60xpOlUJg0QA.jpeg' }
+//     },
+// ]
 
 class Search extends React.Component {
     constructor() {
@@ -47,6 +49,14 @@ class Search extends React.Component {
             searched: false,
             added: false,
         }
+    }
+
+    static navigationOptions = {
+        header: null
+    }
+
+    componentDidMount() {
+        this.props.loadRecommended();
     }
 
     searchInputHandler = input => {
@@ -119,7 +129,7 @@ class Search extends React.Component {
     }
 
     render() {
-        const addedAnim = '../assets/added.json';
+        const { navigate } = this.props.navigation;
         return (
             <View>
                 <TopBar />
@@ -154,12 +164,21 @@ class Search extends React.Component {
                 <Text style={{ color: '#747882', padding: 10, paddingBottom: 0, fontSize: 24, fontWeight: 'bold' }}>Recommended</Text>
                 <FlatList
                     keyExtractor={article => article.title}
-                    data={dummy}
+                    data={this.props.recommendedList}
                     renderItem={article => {
                         return (
-                            <View style={{ borderColor: 'black', borderBottomWidth: 1, paddingTop: 10, paddingBottom: 5 }}>
-                                <ArticleCard image={article.item.img} text={article.item.title} />
-                            </View>
+                            <TouchableOpacity
+                            onPress={
+                                () => {
+                                    this.props.setCurrentContent(article.item);
+                                    navigate('Article');
+                                }
+                            }
+                            >
+                                <View style={{ borderColor: 'black', borderBottomWidth: 1, paddingTop: 10, paddingBottom: 5 }}>
+                                    <ArticleCard image= {{uri: article.item.image}} text={article.item.title} />
+                                </View>
+                            </TouchableOpacity>
                         )
                     }}
                 />
@@ -170,14 +189,17 @@ class Search extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        user: state.user
+        user: state.user,
+        recommendedList: state.recommendedList
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
         loadContentList: (user) => dispatch(loadContentList(user)),
-        loadMostPopular: () => dispatch(loadMostPopular())
+        setCurrentContent: (article) => dispatch(setCurrentContent(article)),
+        loadMostPopular: () => dispatch(loadMostPopular()),
+        loadRecommended: () => dispatch(loadRecommended())
     }
 }
 

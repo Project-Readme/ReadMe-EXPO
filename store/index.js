@@ -9,6 +9,7 @@ import currentContentReducer from './currentContent';
 import contentListReducer from './contentList';
 import mostPopularReducer from './mostPopularList';
 import mostRecentReducer from './mostRecentList';
+import recommendedReducer from './recommendedList';
 import userReducer from './user';
 
 const logger = createLogger();
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
     contentList: contentListReducer,
     mostPopularList: mostPopularReducer,
     mostRecentList: mostRecentReducer,
+    recommendedList: recommendedReducer,
     user: userReducer,
     network,
 });
