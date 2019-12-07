@@ -10,6 +10,7 @@ import { loadContentList } from '../store/contentList';
 import Card from '../components/Card';
 import { FlatList } from 'react-native-gesture-handler';
 import ArticleCard from '../components/ArticleCard';
+import { checkInternetConnection, offlineActionCreators } from 'react-native-offline';
 
 class Home extends React.Component {
     constructor() {
@@ -27,8 +28,13 @@ class Home extends React.Component {
         this.setState({isRefreshing: true});
         setTimeout( () => {
             try {
-                this.props.loadContentList(this.props.user.email);
-                this.props.loadMostPopular();
+                checkInternetConnection().then(isConnected => {
+                    this.props.connectionChange(isConnected);
+                    if (isConnected && this.props.user.email) {
+                        this.props.loadContentList(this.props.user.email);
+                        this.props.loadMostPopular();
+                    }
+                })
                 this.setState({isRefreshing: false});
 
             } catch (error) {
@@ -110,6 +116,7 @@ const mapDispatchToProps = dispatch => ({
     setCurrentContent: (article) => dispatch(setCurrentContent(article)),
     loadMostPopular: () => dispatch(loadMostPopular()),
     loadContentList: (user) => dispatch(loadContentList(user)),
+    connectionChange: (isConnected) => dispatch(offlineActionCreators.connectionChange(isConnected))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
