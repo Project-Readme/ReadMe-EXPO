@@ -18,28 +18,6 @@ import { loadMostPopular } from '../store/mostPopularList';
 import { loadRecommended } from '../store/recommendedList';
 import { setCurrentContent } from '../store/currentContent';
 
-// const dummy = [
-//     {
-//         title: 'How to Build a Simple Chrome Extension in Vanilla JavaScript',
-//         img: { uri: 'https://miro.medium.com/max/2957/1*HwO6wiOHiJrN1_jePQrmEA.jpeg' }
-//     },
-//     {
-//         title: 'How to Perform Web-Scraping using Node.js',
-//         img: { uri: 'https://miro.medium.com/max/4592/1*tBBX7RGFkadc_yiShZLDCQ.jpeg' }
-//     },
-//     {
-//         title: 'You Don’t Understand Bitcoin Because You Think Money Is Real',
-//         img: { uri: 'https://miro.medium.com/max/3887/1*1DQEeByasuoteYxoySd5SA.jpeg' }
-//     },
-//     {
-//         title: 'The Real Cost of Phone Addiction',
-//         img: { uri: 'https://miro.medium.com/max/2400/1*wMjnTSs_-znQ2NRUjysK4w.png' }
-//     },
-//     {
-//         title: 'Easily Build Forms in React Native',
-//         img: { uri: 'https://miro.medium.com/max/3264/1*OULxgHA3QB60xpOlUJg0QA.jpeg' }
-//     },
-// ]
 
 class Search extends React.Component {
     constructor() {
@@ -125,7 +103,7 @@ class Search extends React.Component {
     }
 
     resetSearch() {
-        setTimeout(() => this.setState({ searched: false, added: false }), 3100)
+        setTimeout(() => this.setState({ searched: false, added: false }), 3500)
     }
 
     render() {
@@ -142,7 +120,8 @@ class Search extends React.Component {
                         onChangeText={this.searchInputHandler}
                         ref={input => { this.textInput = input }}
                     />
-                    <TouchableOpacity style={styles.searchButton} onPress={() => {
+                    <TouchableOpacity
+style={styles.searchButton} onPress={() => {
                         this.getArticle()
                         this.resetSearch()
                     }}>
@@ -155,7 +134,7 @@ class Search extends React.Component {
                             <Success />
                         </FadingAnimation>
                         :
-                        <FadingAnimation key="added" style={{ height: 70, }}>
+                        <FadingAnimation key="error" style={{ height: 70 }}>
                             <Failed />
                         </FadingAnimation>
                     )] :
