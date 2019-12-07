@@ -80,7 +80,8 @@ class Home extends React.Component {
                                     image={{ uri: article.item.image }}
                                     text={article.item.title}
                                     article={article.item}
-                                    navigate={navigate}>
+                                    navigate={navigate}
+                                    type={'recent'}>
                                 </SwipeableRow>
                             )
                         }}

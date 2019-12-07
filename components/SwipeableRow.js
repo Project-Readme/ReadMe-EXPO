@@ -14,7 +14,7 @@ class SwipeableRow extends React.Component {
     leftActions = () => (
         <TouchableOpacity style={styles.swipeableAdd} onPress={() => {
             this.close()
-            this.addArticle(this.props.article)
+            this.addArticle(this.props.article, this.props.type)
         }}>
             <View>
                 <Entypo name="add-to-list" size={36} style={{ paddingTop: '1%' }}></Entypo>
@@ -22,11 +22,16 @@ class SwipeableRow extends React.Component {
         </TouchableOpacity>
     )
 
-    async addArticle(article) {
+    async addArticle(article, type) {
+        let content;
         const url = article.url.split('/').join('')
         try {
-            const article = await db.collection('articles').doc(url).get()
-            const data = article.data()
+            if (type === 'recent') {
+                content = await db.collection('articles').doc(url).get()
+            } else {
+                content = await db.collection('recommended').doc(url).get()
+            }
+            const data = content.data()
             const ref = await db.collection('users').doc(this.props.user).collection('articles').doc(url)
             ref.set({
                 Title: data.Title,

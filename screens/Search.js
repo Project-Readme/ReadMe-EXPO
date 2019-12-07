@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, TextInput, TouchableOpacity, FlatList } from 'react-native';
 import TopBar from '../components/topBar';
 import styles from '../styles';
-import ArticleCard from '../components/ArticleCard';
+import SwipeableRow from '../components/SwipeableRow';
 import Success from '../components/SuccessAnim';
 import FadingAnimation from '../components/FadingAnimation';
 import Failed from '../components/FailedSearchAnim';
@@ -17,29 +17,6 @@ import { loadContentList } from '../store/contentList';
 import { loadMostPopular } from '../store/mostPopularList';
 import { loadRecommended } from '../store/recommendedList';
 import { setCurrentContent } from '../store/currentContent';
-
-// const dummy = [
-//     {
-//         title: 'How to Build a Simple Chrome Extension in Vanilla JavaScript',
-//         img: { uri: 'https://miro.medium.com/max/2957/1*HwO6wiOHiJrN1_jePQrmEA.jpeg' }
-//     },
-//     {
-//         title: 'How to Perform Web-Scraping using Node.js',
-//         img: { uri: 'https://miro.medium.com/max/4592/1*tBBX7RGFkadc_yiShZLDCQ.jpeg' }
-//     },
-//     {
-//         title: 'You Don’t Understand Bitcoin Because You Think Money Is Real',
-//         img: { uri: 'https://miro.medium.com/max/3887/1*1DQEeByasuoteYxoySd5SA.jpeg' }
-//     },
-//     {
-//         title: 'The Real Cost of Phone Addiction',
-//         img: { uri: 'https://miro.medium.com/max/2400/1*wMjnTSs_-znQ2NRUjysK4w.png' }
-//     },
-//     {
-//         title: 'Easily Build Forms in React Native',
-//         img: { uri: 'https://miro.medium.com/max/3264/1*OULxgHA3QB60xpOlUJg0QA.jpeg' }
-//     },
-// ]
 
 class Search extends React.Component {
     constructor() {
@@ -167,18 +144,12 @@ class Search extends React.Component {
                     data={this.props.recommendedList}
                     renderItem={article => {
                         return (
-                            <TouchableOpacity
-                            onPress={
-                                () => {
-                                    this.props.setCurrentContent(article.item);
-                                    navigate('Article');
-                                }
-                            }
-                            >
-                                <View style={{ borderColor: 'black', borderBottomWidth: 1, paddingTop: 10, paddingBottom: 5 }}>
-                                    <ArticleCard image= {{uri: article.item.image}} text={article.item.title} />
-                                </View>
-                            </TouchableOpacity>
+                            <SwipeableRow
+                                image={{ uri: article.item.image }}
+                                text={article.item.title}
+                                article={article.item}
+                                navigate={navigate}>
+                            </SwipeableRow>
                         )
                     }}
                 />
