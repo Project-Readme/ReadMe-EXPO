@@ -43,6 +43,7 @@ export const loadMostPopular = () => async dispatch => {
                 body: data.Body,
                 head: data.Head,
                 image: data.Image,
+                url: data.URL
             })
         })
 

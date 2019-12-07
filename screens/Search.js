@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, TextInput, TouchableOpacity, FlatList } from 'react-native';
 import TopBar from '../components/topBar';
 import styles from '../styles';
-import ArticleCard from '../components/ArticleCard';
+import SwipeableRow from '../components/SwipeableRow';
 import Success from '../components/SuccessAnim';
 import FadingAnimation from '../components/FadingAnimation';
 import Failed from '../components/FailedSearchAnim';
@@ -146,18 +146,12 @@ style={styles.searchButton} onPress={() => {
                     data={this.props.recommendedList}
                     renderItem={article => {
                         return (
-                            <TouchableOpacity
-                            onPress={
-                                () => {
-                                    this.props.setCurrentContent(article.item);
-                                    navigate('Article');
-                                }
-                            }
-                            >
-                                <View style={{ borderColor: 'black', borderBottomWidth: 1, paddingTop: 10, paddingBottom: 5 }}>
-                                    <ArticleCard image= {{uri: article.item.image}} text={article.item.title} />
-                                </View>
-                            </TouchableOpacity>
+                            <SwipeableRow
+                                image={{ uri: article.item.image }}
+                                text={article.item.title}
+                                article={article.item}
+                                navigate={navigate}>
+                            </SwipeableRow>
                         )
                     }}
                 />
