@@ -23,6 +23,7 @@ export const loadRecommended = () => async dispatch => {
                 body: data.Body,
                 head: data.Head,
                 image: data.Image,
+                url: data.URL
             })
         })
 
