@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, View, ScrollView, TouchableOpacity, RefreshControl } from 'react-native';
+import SwipeableRow from '../components/SwipeableRow';
 import TopBar from '../components/topBar';
 import styles from '../styles';
 import { connect } from 'react-redux';
@@ -9,13 +10,12 @@ import { loadContentList } from '../store/contentList';
 
 import Card from '../components/Card';
 import { FlatList } from 'react-native-gesture-handler';
-import ArticleCard from '../components/ArticleCard';
 
 class Home extends React.Component {
     constructor() {
         super();
         this.state = {
-            isRefreshing: false
+            isRefreshing: false,
         }
         this.onRefresh = this.onRefresh.bind(this)
     }
@@ -24,79 +24,72 @@ class Home extends React.Component {
     };
 
     onRefresh() {
-        this.setState({isRefreshing: true});
-        setTimeout( () => {
+        this.setState({ isRefreshing: true });
+        setTimeout(() => {
             try {
                 this.props.loadContentList(this.props.user.email);
                 this.props.loadMostPopular();
-                this.setState({isRefreshing: false});
+                this.setState({ isRefreshing: false });
 
             } catch (error) {
                 console.log(error)
-                this.setState({isRefreshing: false});
+                this.setState({ isRefreshing: false });
             }
         });
-      }
+    }
 
     render() {
         const { navigate } = this.props.navigation;
         return (
-                <View style={styles.homeContainer}>
-                    <TopBar />
-                    <ScrollView
+            <View style={styles.homeContainer}>
+                <TopBar />
+                <ScrollView
                     refreshControl={
                         <RefreshControl refreshing={this.state.isRefreshing} onRefresh={this.onRefresh} />
                     }
+                >
+                    <Text style={styles.homeHeader}>Most Popular</Text>
+                    <ScrollView
+                        horizontal={true}
+                        style={{ paddingBottom: 20 }}
+                        showsHorizontalScrollIndicator={false}
                     >
-                        <Text style={styles.homeHeader}>Most Popular</Text>
-                        <ScrollView
-                            horizontal={true}
-                            style={{ paddingBottom: 20 }}
-                            showsHorizontalScrollIndicator={false}
-                        >
-                            {this.props.mostPopularList.map((item) => (
+                        {this.props.mostPopularList.map((item) => (
                             <TouchableOpacity
-                            key={item.id}
-                            onPress={
-                                () => {
-                                    this.props.setCurrentContent(item);
-                                    navigate('Article');
-                                }}
+                                key={item.id}
+                                onPress={
+                                    () => {
+                                        this.props.setCurrentContent(item);
+                                        navigate('Article');
+                                    }}
                             >
                                 <Card
-                                title={item.title}
-                                image={{ uri: item.image }}
+                                    title={item.title}
+                                    image={{ uri: item.image }}
                                 />
                             </TouchableOpacity>
-                            ))}
-                        </ScrollView>
-                        <Text style={styles.homeHeader}>Recent Articles</Text>
-                        <FlatList
-                            keyExtractor={article => article.title}
-                            data={this.props.mostRecentList}
-                            renderItem={article => {
-
-                                return (
-                                    <TouchableOpacity
-                                    onPress={
-                                        () => {
-                                            this.props.setCurrentContent(article.item);
-                                            navigate('Article');
-                                        }
-                                    }
-                                    >
-                                    <View style={styles.recentBox}>
-                                        <ArticleCard image={{uri: article.item.image}} text={article.item.title} />
-                                    </View>
-                                    </TouchableOpacity>
-                                )
-                            }}
-                        />
+                        ))}
                     </ScrollView>
-                </View>
-            )
-     }
+                    <Text style={styles.homeHeader}>Recent Articles</Text>
+                    <FlatList
+                        keyExtractor={article => article.title}
+                        data={this.props.mostRecentList}
+                        renderItem={article => {
+                            return (
+                                <SwipeableRow
+                                    image={{ uri: article.item.image }}
+                                    text={article.item.title}
+                                    article={article.item}
+                                    navigate={navigate}>
+                                </SwipeableRow>
+                            )
+                        }}
+                    />
+                </ScrollView>
+            </View>
+        )
     }
+}
 
 const mapStateToProps = state => {
     return {

@@ -153,5 +153,13 @@ module.exports = StyleSheet.create({
     alignItems: 'center',
     height: 60,
     width: '100%'
+  },
+  swipeableAdd: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 12,
+    marginLeft: 12,
+    marginRight: 0,
+    width: '12%'
   }
 });
