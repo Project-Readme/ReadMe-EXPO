@@ -17,6 +17,7 @@ import { loadContentList } from '../store/contentList';
 import { loadMostPopular } from '../store/mostPopularList';
 import { loadRecommended } from '../store/recommendedList';
 import { setCurrentContent } from '../store/currentContent';
+import { checkInternetConnection, offlineActionCreators } from 'react-native-offline';
 
 
 class Search extends React.Component {
@@ -34,7 +35,13 @@ class Search extends React.Component {
     }
 
     componentDidMount() {
-        this.props.loadRecommended();
+        checkInternetConnection().then(isConnected => {
+            this.props.connectionChange(isConnected);
+            if (isConnected && this.props.user) {
+                this.props.loadRecommended();
+            }
+        })
+
     }
 
     searchInputHandler = input => {
@@ -150,8 +157,7 @@ style={styles.searchButton} onPress={() => {
                                 image={{ uri: article.item.image }}
                                 text={article.item.title}
                                 article={article.item}
-                                navigate={navigate}>
-                            </SwipeableRow>
+                                navigate={navigate} />
                         )
                     }}
                 />
@@ -172,7 +178,8 @@ const mapDispatchToProps = dispatch => {
         loadContentList: (user) => dispatch(loadContentList(user)),
         setCurrentContent: (article) => dispatch(setCurrentContent(article)),
         loadMostPopular: () => dispatch(loadMostPopular()),
-        loadRecommended: () => dispatch(loadRecommended())
+        loadRecommended: () => dispatch(loadRecommended()),
+        connectionChange: (isConnected) => dispatch(offlineActionCreators.connectionChange(isConnected))
     }
 }
 

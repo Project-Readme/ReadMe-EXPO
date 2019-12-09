@@ -25,14 +25,24 @@ class Home extends React.Component {
         header: null
     };
 
+    componentDidMount() {
+        checkInternetConnection().then(isConnected => {
+            this.props.connectionChange(isConnected);
+            if (isConnected && this.props.user) {
+                this.props.loadContentList(this.props.user);
+                this.props.loadMostPopular();
+            }
+        })
+    }
+
     onRefresh() {
         this.setState({ isRefreshing: true });
         setTimeout(() => {
             try {
                 checkInternetConnection().then(isConnected => {
                     this.props.connectionChange(isConnected);
-                    if (isConnected && this.props.user.email) {
-                        this.props.loadContentList(this.props.user.email);
+                    if (isConnected && this.props.user) {
+                        this.props.loadContentList(this.props.user);
                         this.props.loadMostPopular();
                     }
                 })
@@ -88,8 +98,7 @@ class Home extends React.Component {
                                     text={article.item.title}
                                     article={article.item}
                                     navigate={navigate}
-                                    type={'recent'}>
-                                </SwipeableRow>
+                                    type="recent" />
                             )
                         }}
                     />

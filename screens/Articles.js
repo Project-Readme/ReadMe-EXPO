@@ -38,8 +38,8 @@ class AllArticles extends React.Component {
             try {
                 checkInternetConnection().then(isConnected => {
                     this.props.connectionChange(isConnected);
-                    if (isConnected && this.props.user.email) {
-                        this.props.loadContentList(this.props.user.email);
+                    if (isConnected && this.props.user) {
+                        this.props.loadContentList(this.props.user);
                         this.props.loadMostPopular();
                     }
                 })
