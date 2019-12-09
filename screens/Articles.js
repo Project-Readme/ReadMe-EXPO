@@ -33,8 +33,8 @@ class AllArticles extends React.Component {
     };
 
     onRefresh() {
-        this.setState({isRefreshing: true});
-        setTimeout( () => {
+        this.setState({ isRefreshing: true });
+        setTimeout(() => {
             try {
                 checkInternetConnection().then(isConnected => {
                     this.props.connectionChange(isConnected);
@@ -43,14 +43,14 @@ class AllArticles extends React.Component {
                         this.props.loadMostPopular();
                     }
                 })
-                this.setState({isRefreshing: false});
+                this.setState({ isRefreshing: false });
 
             } catch (error) {
                 console.log(error)
-                this.setState({isRefreshing: false});
+                this.setState({ isRefreshing: false });
             }
         });
-      }
+    }
 
     searchInputHandler = input => {
         const results = this.props.contentList.filter(article => {
@@ -78,8 +78,8 @@ class AllArticles extends React.Component {
         const url = article.url.split('/').join('')
         try {
             await db.collection('users').doc(this.props.user).collection('articles')
-.doc(url)
-.delete()
+                .doc(url)
+                .delete()
             this.props.loadContentList(this.props.user)
         } catch (err) {
             console.log('error', err)
@@ -91,7 +91,6 @@ class AllArticles extends React.Component {
         return (
             <View style={styles.AllArticlesContainer} >
                 <TopBar />
-
                 <TextInput
                     placeholder="Search"
                     style={{ ...styles.searchBar, marginTop: 10 }}
@@ -102,8 +101,8 @@ class AllArticles extends React.Component {
 
                 {this.state.searched ?
                     <ScrollView
-                    contentContainerStyle={styles.AllArticles}
-                    refreshControl={<RefreshControl refreshing={this.state.isRefreshing} onRefresh={this.onRefresh} />}
+                        contentContainerStyle={styles.AllArticles}
+                        refreshControl={<RefreshControl refreshing={this.state.isRefreshing} onRefresh={this.onRefresh} />}
                     >
                         {this.state.searchResults.map((article) => (
                             <TouchableOpacity
@@ -124,8 +123,8 @@ class AllArticles extends React.Component {
                         }
                     </ScrollView>
                     : <ScrollView
-                    contentContainerStyle={styles.AllArticles}
-                    refreshControl={<RefreshControl refreshing={this.state.isRefreshing} onRefresh={this.onRefresh} />}
+                        contentContainerStyle={styles.AllArticles}
+                        refreshControl={<RefreshControl refreshing={this.state.isRefreshing} onRefresh={this.onRefresh} />}
                     >
                         {this.props.contentList.map((article) => (
                             <Swipeable
@@ -148,7 +147,7 @@ class AllArticles extends React.Component {
                             </Swipeable>
                         ))
                         }
-                      </ScrollView>}
+                    </ScrollView>}
             </View>
         );
     }

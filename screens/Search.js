@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, TextInput, TouchableOpacity, FlatList } from 'react-native';
 import TopBar from '../components/topBar';
 import styles from '../styles';
-import ArticleCard from '../components/ArticleCard';
+import SwipeableRow from '../components/SwipeableRow';
 import Success from '../components/SuccessAnim';
 import FadingAnimation from '../components/FadingAnimation';
 import Failed from '../components/FailedSearchAnim';
@@ -17,6 +17,7 @@ import { loadContentList } from '../store/contentList';
 import { loadMostPopular } from '../store/mostPopularList';
 import { loadRecommended } from '../store/recommendedList';
 import { setCurrentContent } from '../store/currentContent';
+import { checkInternetConnection, offlineActionCreators } from 'react-native-offline';
 
 
 class Search extends React.Component {
@@ -34,7 +35,13 @@ class Search extends React.Component {
     }
 
     componentDidMount() {
-        this.props.loadRecommended();
+        checkInternetConnection().then(isConnected => {
+            this.props.connectionChange(isConnected);
+            if (isConnected && this.props.user) {
+                this.props.loadRecommended();
+            }
+        })
+
     }
 
     searchInputHandler = input => {
@@ -146,18 +153,11 @@ style={styles.searchButton} onPress={() => {
                     data={this.props.recommendedList}
                     renderItem={article => {
                         return (
-                            <TouchableOpacity
-                            onPress={
-                                () => {
-                                    this.props.setCurrentContent(article.item);
-                                    navigate('Article');
-                                }
-                            }
-                            >
-                                <View style={{ borderColor: 'black', borderBottomWidth: 1, paddingTop: 10, paddingBottom: 5 }}>
-                                    <ArticleCard image= {{uri: article.item.image}} text={article.item.title} />
-                                </View>
-                            </TouchableOpacity>
+                            <SwipeableRow
+                                image={{ uri: article.item.image }}
+                                text={article.item.title}
+                                article={article.item}
+                                navigate={navigate} />
                         )
                     }}
                 />
@@ -178,7 +178,8 @@ const mapDispatchToProps = dispatch => {
         loadContentList: (user) => dispatch(loadContentList(user)),
         setCurrentContent: (article) => dispatch(setCurrentContent(article)),
         loadMostPopular: () => dispatch(loadMostPopular()),
-        loadRecommended: () => dispatch(loadRecommended())
+        loadRecommended: () => dispatch(loadRecommended()),
+        connectionChange: (isConnected) => dispatch(offlineActionCreators.connectionChange(isConnected))
     }
 }
 
