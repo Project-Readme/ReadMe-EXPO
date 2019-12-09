@@ -24,6 +24,11 @@ class Home extends React.Component {
         header: null
     };
 
+    componentDidMount() {
+        this.props.loadContentList(this.props.user);
+        this.props.loadMostPopular();
+    }
+
     onRefresh() {
         this.setState({isRefreshing: true});
         setTimeout( () => {
