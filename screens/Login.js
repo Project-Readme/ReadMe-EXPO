@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, TextInput, TouchableOpacity, ScrollView, RefreshControl } from 'react-native';
 import { connect } from 'react-redux';
+import { checkInternetConnection, offlineActionCreators } from 'react-native-offline';
 
 import { signIn } from '../store/user';
 import styles from '../styles';
@@ -18,7 +19,15 @@ class Login extends React.Component {
     }
 
     onRefresh() {
-        this.setState({isRefreshing: true});        this.props.navigation.navigate('Auth');
+        console.log(this.props.isConnected)
+        checkInternetConnection().then(isConnected => {
+            this.props.connectionChange(isConnected);
+            if (isConnected) {
+                this.props.navigation.navigate('Auth');
+            }
+        })
+        this.setState({isRefreshing: true});
+
         setTimeout( () => {
             try {
                 this.setState({
@@ -47,6 +56,7 @@ class Login extends React.Component {
     }
 
     render() {
+
         if (this.props.isConnected) {
             return (
                 <View style={styles.container}>
@@ -116,7 +126,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatch = dispatch => ({
-    signIn: (email, password) => dispatch(signIn(email, password))
+    signIn: (email, password) => dispatch(signIn(email, password)),
+    connectionChange: (isConnected) => dispatch(offlineActionCreators.connectionChange(isConnected))
 })
 
 export default connect(mapStateToProps, mapDispatch)(Login);

@@ -18,6 +18,7 @@ import { loadMostPopular } from '../store/mostPopularList';
 import { loadRecommended } from '../store/recommendedList';
 import { setCurrentContent } from '../store/currentContent';
 
+
 class Search extends React.Component {
     constructor() {
         super()
@@ -102,7 +103,7 @@ class Search extends React.Component {
     }
 
     resetSearch() {
-        setTimeout(() => this.setState({ searched: false, added: false }), 3100)
+        setTimeout(() => this.setState({ searched: false, added: false }), 3500)
     }
 
     render() {
@@ -119,7 +120,8 @@ class Search extends React.Component {
                         onChangeText={this.searchInputHandler}
                         ref={input => { this.textInput = input }}
                     />
-                    <TouchableOpacity style={styles.searchButton} onPress={() => {
+                    <TouchableOpacity
+style={styles.searchButton} onPress={() => {
                         this.getArticle()
                         this.resetSearch()
                     }}>
@@ -132,7 +134,7 @@ class Search extends React.Component {
                             <Success />
                         </FadingAnimation>
                         :
-                        <FadingAnimation key="added" style={{ height: 70, }}>
+                        <FadingAnimation key="error" style={{ height: 70 }}>
                             <Failed />
                         </FadingAnimation>
                     )] :
