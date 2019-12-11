@@ -2,13 +2,9 @@
 
 ## Overview 
 
-For voracious readers, the internet can be a blessing and a curse. There are so many sites out there, with so much great content, so many links to click, so many recomendations to follow—it's easy to end up with a seemingly endless collection of open browser tabs, and no time to sit at your computer to read them all. 
+For voracious readers, the internet can be a blessing and a curse. There are so many sites out there, with so much great content, so many links to click, so many recomendations to follow. It's easy to end up with a seemingly endless collection of open browser tabs, and no time to sit at your computer to read them all.
 
-Enter ReadMe: an offline-first moble app that—together with its [companion browser extension](https://github.com/Project-Readme/ReadMe-browser-extension "extension repository")—allows readers to save articles, blog posts, and other text from their desktops and retrive that content later for reading on their mobile device. 
-
-Articles are downloaded from the remote database and saved locally on users' devices for offline reading until they decide to delete them. 
-
-And if a user does run out of things to read, our app can help with that as well: the homepage of the app is pre-populated with most popular and most recent articles saved by everyone in ReadMe's community of users.
+Enter ReadMe: an offline-first moble app that—together with its [companion browser extension](https://github.com/Project-Readme/ReadMe-browser-extension "extension repository")—allows a reader to save articles, blog posts, and other text from their desktops and retrive that content later for reading on their mobile device. If a user does run out of things to read our app has recommendations for them on the home screen.
 
 The ReadMe App was built using React Native, Redux, and Cloud Firestore.  
 
@@ -18,12 +14,15 @@ This app is available on the Expo(https://expo.io/ "Expo homepage") platform. Af
 
 To build you own copy, clone this repository to your local machine and install it with the [npm cli](https://docs.npmjs.com/cli/npm "npm cli documentation") by running `npm install`.
 
-With Expo install, you can then run `npm start` to launch the app.
+With Expo installed, you can then run `npm start` to launch the app.
 
+To log in to our app you can create an account or use the following credentals username: guest and password: password.
 
 ## Features
 
 **Viewing Screens**
+
+The home screen of the app is pre-populated with lists of the most popular and most recent articles saved by everyone in ReadMe's community of users.
 
 |     Login    |  Home    
 | ------------------------- |:-----------------------:|
@@ -37,6 +36,10 @@ With Expo install, you can then run `npm start` to launch the app.
 
 **Deleting/Searching and Offline**
 
-|     Delete    |  Search    
-| ------------------------- |:-----------------------:|
-| ![Output sample](https://github.com/Project-ReadMe/ReadMe-EXPO/blob/master/resources/add_in_app3.gif)|![Output sample](https://github.com/Project-ReadMe/ReadMe-EXPO/blob/master/resources/add_recent.gif)|
+Articles are downloaded from the remote database and saved locally on a user's device for offline reading. A user can also search for specific articles in their list by typing the name of the article in the search bar.
+
+|     Delete     |  Search    | Offline
+| ------------------------- |:-----------------------:|:-----------------------:|
+| ![Output sample](https://github.com/Project-ReadMe/ReadMe-EXPO/blob/master/resources/add_in_app3.gif)|![Output sample](https://github.com/Project-ReadMe/ReadMe-EXPO/blob/master/resources/add_recent.gif)| ![Output sample](https://github.com/Project-ReadMe/ReadMe-EXPO/blob/master/resources/add_recommended3.gif)| 
+
+
