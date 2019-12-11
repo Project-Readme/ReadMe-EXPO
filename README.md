@@ -1,5 +1,11 @@
-### ReadME: Reading on the Go
+## ReadME: Reading on the Go
 
-|     Login    |  Add in App    | Weather Concept
+## Getting Started
+
+## Features
+
+**Adding in App**
+
+|     Add with URL     |  Add From Recent    | Add From Recommended
 | ------------------------- |:-----------------------:|:-----------------------:|
-| ![Output sample](https://github.com/Project-ReadMe/ReadMe-EXPO/blob/master/resources/add_in_app2.gif)|![Output sample](https://github.com/Project-ReadMe/ReadMe-EXPO/blob/master/resources/add_recent.gif)|
+| ![Output sample](https://github.com/Project-ReadMe/ReadMe-EXPO/blob/master/resources/add_in_app3.gif)|![Output sample](https://github.com/Project-ReadMe/ReadMe-EXPO/blob/master/resources/add_recent.gif)| ![Output sample](https://github.com/Project-ReadMe/ReadMe-EXPO/blob/master/resources/add_recommended3.gif)| 
