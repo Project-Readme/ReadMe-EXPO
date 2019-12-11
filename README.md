@@ -4,7 +4,7 @@
 
 For voracious readers, the internet can be a blessing and a curse. There are so many sites out there, with so much great content, so many links to click, so many recomendations to follow—it's easy to end up with a seemingly endless collection of open browser tabs, and no time to sit at your computer to read them all. 
 
-Enter ReadMe: an offline-first moble app that—together with its [companion bowser extension](https://github.com/Project-Readme/ReadMe-browser-extension "extension repository")—allows readers to save articles, blog posts, and other text from their desktops and retrive that content later for reading on their mobile device. 
+Enter ReadMe: an offline-first moble app that—together with its [companion browser extension](https://github.com/Project-Readme/ReadMe-browser-extension "extension repository")—allows readers to save articles, blog posts, and other text from their desktops and retrive that content later for reading on their mobile device. 
 
 Articles are downloaded from the remote database and saved locally on users' devices for offline reading until they decide to delete them. 
 
@@ -23,14 +23,20 @@ With Expo install, you can then run `npm start` to launch the app.
 
 ## Features
 
-**View Screens**
+**Viewing Screens**
 
-|     Login    |  View an Article    | Log-Out 
-| ------------------------- |:-----------------------:|:-----------------------:|
-| ![Output sample](https://github.com/Project-ReadMe/ReadMe-EXPO/blob/master/resources/login.jpeg)|![Output sample](https://github.com/Project-ReadMe/ReadMe-EXPO/blob/master/resources/view_article.gif)| ![Output sample](https://github.com/Project-ReadMe/ReadMe-EXPO/blob/master/resources/logout.jpeg)| 
+|     Login    |  Home    
+| ------------------------- |:-----------------------:|
+| ![Output sample](https://github.com/Project-ReadMe/ReadMe-EXPO/blob/master/resources/login.jpeg)|![Output sample](https://github.com/Project-ReadMe/ReadMe-EXPO/blob/master/resources/home.jpeg)| 
 
 **Adding in App**
 
 |     Add with URL     |  Add from Recent    | Add from Recommended
 | ------------------------- |:-----------------------:|:-----------------------:|
 | ![Output sample](https://github.com/Project-ReadMe/ReadMe-EXPO/blob/master/resources/add_in_app3.gif)|![Output sample](https://github.com/Project-ReadMe/ReadMe-EXPO/blob/master/resources/add_recent.gif)| ![Output sample](https://github.com/Project-ReadMe/ReadMe-EXPO/blob/master/resources/add_recommended3.gif)| 
+
+**Deleting/Searching and Offline**
+
+|     Delete    |  Search    
+| ------------------------- |:-----------------------:|
+| ![Output sample](https://github.com/Project-ReadMe/ReadMe-EXPO/blob/master/resources/add_in_app3.gif)|![Output sample](https://github.com/Project-ReadMe/ReadMe-EXPO/blob/master/resources/add_recent.gif)|
