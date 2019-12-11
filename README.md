@@ -25,9 +25,9 @@ With Expo install, you can then run `npm start` to launch the app.
 
 **View Screens**
 
-|     Login    |  Home    | Users Articles | Add | User
+|     Login    |  View an Article    | Log-Out 
 | ------------------------- |:-----------------------:|:-----------------------:|
-| ![Output sample](https://github.com/Project-ReadMe/ReadMe-EXPO/blob/master/resources/login.jpeg)|![Output sample](https://github.com/Project-ReadMe/ReadMe-EXPO/blob/master/resources/add_recent.gif)| ![Output sample](https://github.com/Project-ReadMe/ReadMe-EXPO/blob/master/resources/add_recommended3.gif)| 
+| ![Output sample](https://github.com/Project-ReadMe/ReadMe-EXPO/blob/master/resources/login.jpeg)|![Output sample](https://github.com/Project-ReadMe/ReadMe-EXPO/blob/master/resources/view_article.gif)| ![Output sample](https://github.com/Project-ReadMe/ReadMe-EXPO/blob/master/resources/logout.jpeg)| 
 
 **Adding in App**
 
