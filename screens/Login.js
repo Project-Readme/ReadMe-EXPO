@@ -19,7 +19,6 @@ class Login extends React.Component {
     }
 
     onRefresh() {
-        console.log(this.props.isConnected)
         checkInternetConnection().then(isConnected => {
             this.props.connectionChange(isConnected);
             if (isConnected) {
