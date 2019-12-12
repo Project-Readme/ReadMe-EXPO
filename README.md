@@ -52,5 +52,5 @@ Articles are downloaded from the remote database and saved locally on a user's d
 | ![Output sample](https://github.com/Project-ReadMe/ReadMe-EXPO/blob/master/resources/delete.gif)|![Output sample](https://github.com/Project-ReadMe/ReadMe-EXPO/blob/master/resources/add_recent.gif)| ![Output sample](https://github.com/Project-ReadMe/ReadMe-EXPO/blob/master/resources/add_recommended3.gif)| 
 
 
-TheReadMe App was built by [Simon](https://github.com/orgs/Project-Readme/people/SimonGutierrez), [Dan](https://github.com/orgs/Project-Readme/people/dan2298), [Sarah](https://github.com/orgs/Project-Readme/people/sarahtrefethen) and [Bryce](https://github.com/orgs/Project-Readme/people/theNdroid) using React Native, Redux, and Cloud Firestore.   
+TheReadMe App was built by [Simon](https://github.com/SimonGutierrez), [Dan](https://github.com/dan2298), [Sarah](https://github.com/sarahtrefethen) and [Bryce](https://github.com/theNdroid) using React Native, Redux, and Cloud Firestore.   
 
