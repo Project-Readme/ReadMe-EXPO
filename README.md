@@ -1,12 +1,15 @@
-# ReadMe: Reading on the Go
+![Output sample](https://github.com/Project-ReadMe/ReadMe-EXPO/blob/master/assets/icon.png)
+# ReadMe: Reading on the Go 
+
+|     ReadMe        
+| ------------------------- |
+| ![Output sample](https://github.com/Project-ReadMe/ReadMe-EXPO/blob/master/resources/add_recommended3.gif)|
 
 ## Overview 
 
 For voracious readers, the internet can be a blessing and a curse. There are so many sites out there, with so much great content, so many links to click, so many recommendations to follow. It's easy to end up with a seemingly endless collection of open browser tabs, and no time to sit at your computer to read them all. 
 
 Enter ReadMe: an offline-first mobile app that—together with its [companion browser extension](https://github.com/Project-Readme/ReadMe-browser-extension "extension repository")—allows a reader to save articles, blog posts, and other text from their desktops and retrieve that content later for reading on their mobile device. If a user does run out of things to read our app has recommendations for them on the home screen. 
-
-TheReadMe App was built by [Simon](https://github.com/orgs/Project-Readme/people/SimonGutierrez), [Dan](https://github.com/orgs/Project-Readme/people/dan2298), [Sarah](https://github.com/orgs/Project-Readme/people/sarahtrefethen) and [Bryce](https://github.com/orgs/Project-Readme/people/theNdroid) using React Native, Redux, and Cloud Firestore.   
 
 ## Getting Started
 
@@ -22,7 +25,7 @@ To log in to our app you can create an account, or use the following credentials
 
 ## Features
 
-**Viewing Screens**
+**Views**
 
 The home screen of the app is pre-populated with lists of the most popular and most recent articles saved by everyone in ReadMe's community of users.
 
@@ -46,4 +49,6 @@ Articles are downloaded from the remote database and saved locally on a user's d
 | ------------------------- |:-----------------------:|:-----------------------:|
 | ![Output sample](https://github.com/Project-ReadMe/ReadMe-EXPO/blob/master/resources/delete.gif)|![Output sample](https://github.com/Project-ReadMe/ReadMe-EXPO/blob/master/resources/add_recent.gif)| ![Output sample](https://github.com/Project-ReadMe/ReadMe-EXPO/blob/master/resources/add_recommended3.gif)| 
 
+
+TheReadMe App was built by [Simon](https://github.com/orgs/Project-Readme/people/SimonGutierrez), [Dan](https://github.com/orgs/Project-Readme/people/dan2298), [Sarah](https://github.com/orgs/Project-Readme/people/sarahtrefethen) and [Bryce](https://github.com/orgs/Project-Readme/people/theNdroid) using React Native, Redux, and Cloud Firestore.   
 
