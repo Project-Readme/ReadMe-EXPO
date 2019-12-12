@@ -1,5 +1,6 @@
-![Output sample](https://github.com/Project-ReadMe/ReadMe-EXPO/blob/master/assets/icon.png)
-# ReadMe: Reading on the Go 
+<img align="left" alt="RM" src="https://github.com/Project-ReadMe/ReadMe-EXPO/blob/master/assets/icon.png">
+<h1>ReadMe: Reading on the Go <h1>
+
 
 |     ReadMe        
 | ------------------------- |
