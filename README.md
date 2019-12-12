@@ -3,7 +3,7 @@
 ## ReadMe: Reading on the Go 
 
 
-|     ReadMe        
+|     Our App        
 | ------------------------- |
 | ![Output sample](https://github.com/Project-ReadMe/ReadMe-EXPO/blob/master/resources/add_recommended3.gif)|
 
