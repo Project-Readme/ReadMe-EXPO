@@ -17,8 +17,7 @@ To build you own copy, clone this repository to your local machine and install i
 With Expo installed, you can then run `npm start` to launch the app. 
 
 To log in to our app you can create an account, or use the following credentials:
-
-> username: guest
+> username: guest<br />
 > password: password
 
 ## Features
