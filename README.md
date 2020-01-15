@@ -15,7 +15,7 @@ Enter ReadMe: an offline-first mobile app that—together with its [companion br
 
 ## Getting Started
 
-This app is available on the [Expo](https://expo.io/ "Expo homepage") platform. After you have installed Expo onto your device you can run the app via this link (the easier option,) or by building your own copy.  
+This app is available on the [Expo](https://expo.io/ "Expo homepage") platform. After you have installed Expo onto your device you can run the app via this [link](https://expo.io/@tresarah/ReadMe-RN) (the easier option) or by building your own copy.  
 
 To build you own copy, clone this repository to your local machine and install it with the [npm cli](https://docs.npmjs.com/cli/npm "npm cli documentation") by running `npm install`. 
 
@@ -52,5 +52,5 @@ Articles are downloaded from the remote database and saved locally on a user's d
 | ![Output sample](https://github.com/Project-ReadMe/ReadMe-EXPO/blob/master/resources/delete.gif)|![Output sample](https://github.com/Project-ReadMe/ReadMe-EXPO/blob/master/resources/searching.gif)| ![Output sample](https://github.com/Project-ReadMe/ReadMe-EXPO/blob/master/resources/offline2.gif)| 
 
 
-TheReadMe App was built by [Simon](https://github.com/SimonGutierrez), [Dan](https://github.com/dan2298), [Sarah](https://github.com/sarahtrefethen) and [Bryce](https://github.com/theNdroid) using React Native, Redux, and Cloud Firestore.   
+TheReadMe App was built by [Simon](https://github.com/SimonGutierrez), [Daniel](https://github.com/dan2298), [Sarah](https://github.com/sarahtrefethen) and [Bryce](https://github.com/theNdroid) using React Native, Redux, and Cloud Firestore.   
 
